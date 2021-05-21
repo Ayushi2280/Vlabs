@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Welcome</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+</head>
+<body>
+	<div class="container">
+	<nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
+  <a class="navbar-brand" href="./ne.html">BIO MECHANICS LAB</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="#">RIGVIT</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="#Introduction">Introduction<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#Implementation">Implementation</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+ <a href="#"><img src="./BIO.png" class="d-block w-100" alt="..."></a>
+<section id="Introduction">
+<div class="container">
+  <div class="column">
+    <div class="col-sm">
+    <div class="content" id="Introduction" wfd-id="14">
+      <div class="divContent" id="wrap" wfd-id="15">
+                     
+      <p class="MsoNormal" style="line-height: 150%;">
+
+      <h2>TORQUE</h2>
+   <br>
+       <section class="resume-section" id="torque">
+                <div class="resume-section-content">
+                   
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <h3 class="mb-0">Introduction</h3>
+                            
+                            <p>A torque is the turning effect that is produced by a force can also be known as a moment of force,or simply a moment.</p>
+                        </div>
+                       
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <h3 class="mb-0">Mathematical Form</h3>
+                            
+                            <p> Mathematically, torque can be defined as:<br/>
+T  =  F  x r<br/>
+       Where<br/> 
+       T = torque (Nm), 
+       F = Force (N), 
+       r = moment arm (m)
+<br/>
+ Torque is a vector quantity,  You must specify a direction
+(+) Counter clockwise
+(-) Clockwise
+</p>
+                        </div>
+                        
+                    </div>
+<br>
+<hr class="m-0" />
+<br/>
+                    
+    <div class="col-sm">
+    	<h3>  <a class="btn btn-primary btn-lg" href="#" role="button">FACTORS AFFECTING TORQUE</a></h3>
+    	<p>Distance between the line of action of action and the axis of rotation.<br/>
+          Size of the force.<br/>
+ The distance between the line of action of the force and the axis of rotation is the perpendicular distance between the line of action of the force and a line parallel to it that passes through the axis of rotation.<br/>
+ This can be simply defined as the moment arm.
+</p>
+ 
+    </div>
+</div>
+<br>
+ <hr class="m-0" />
+<br>
+
+</div>
+
+<div class="container">
+  <div class="column">
+    <div class="col-sm">
+      <h3>  <a class="btn btn-primary btn-lg" href="#" role="button">MUSCULAR TORQUE</a></h3>
+      <section class="resume-section" id="muscular torque">
+                <div class="resume-section-content">
+           
+                 <p>Muscles create the torques that turn our limbs. When a muscles contracts it pulls on its points of attachment, along a line of action (or line of pull).
+                    Because the line of action of the muscle force is some distance from the joint axis (fulcrum) a moment arm exits (r).</p>
+                  <p>Consider how the moment arm (r) changes as the arm flexes.What affect does that have on the biceps brachii's ability to create a torque about the elbow joint?</p>
+                  <p>As the forearm is flexed and extended, the moment arm changes.The moment arm is biggest when the elbow is at 90 degrees, and gets smaller as it is flexed and extended away from this position. A similar situation exists for most of our muscles and the joints they cross.Explains why our muscles are apparently stronger in some joint  positions than others.
+                  As muscle attachments are much closer to the joint axis than the load, muscles have to create large forces just to hold a static position.
+                 </p>
+                </div>
+            </section>
+            <br>
+            <hr class="m-0" />
+           <br>
+            
+    </div>
+    <section id="Implementation">
+    <div class="col-sm">
+    	<h4>  <a class="btn btn-primary btn-lg" href="#" role="button">IMPLEMENTATION</a></h4>
+    	<section class="resume-section" id="implementation">
+                <div class="resume-section-content">
+                  <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <h3 class="mb-0">Muscular Torque</h3>
+                          <p>T=F X r <br>
+
+Where:
+
+T= torque (Nm),
+
+F= Force (N),
+
+r= moment arm (m) 
+</p>
+</div>
+</div>
+<br>
+<hr class="m-0" />
+<br/>
+<div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <h3 class="mb-0">Conversion Of Units</h3>
+<p>
+  <label>cm</label>
+  <input id="inputcm" type="number" placeholder="cm" oninput="LengthConverter1(this.value)" onchange="LengthConverter(this.value)">
+</p>
+<p>Meters: <span id="outputMeters"></span></p>
+<p>
+  <label>kg</label>
+  <input id="inputkg" type="number" placeholder="kg" oninput="LengthConverter2(this.value)" onchange="LengthConverter(this.value)">
+</p>
+<p>Newton: <span id="outputNewton"></span></p>
+</div>
+</div>
+<br>
+<hr class="m-0" />
+<br/>
+<div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <h3 class="mb-0">Value of Torque and Force</h3>
+<script language="javascript">
+                function multiplyNumbers()
+                {
+                        var val1 = parseInt(document.getElementById("F").value);
+                        var val2 = parseInt(document.getElementById("r").value);
+                        var ansD = document.getElementById("value of T (Nm)");
+                        ansD.value = val1 * val2;
+                }
+        </script>
+  
+  <body>
+        F = <input type="text" id="F" name="F" value=""/>
+        r = <input type="text" id="r" name="r" value=""/>
+        <input type="button" name="Sumbit" value="Click here" onclick="javascript:multiplyNumbers()"/>
+        Value of T (Nm) = <input type="text" id="value of T (Nm)" name="value of T (Nm)" value=""/>
+  </body>
+</p><br>
+<script language="javascript">
+                function divideNumbers()
+                {
+                        var val1 = parseInt(document.getElementById("T").value);
+                        var val2 = parseInt(document.getElementById("r").value);
+                        var ansD = document.getElementById("Value of F (N)");
+                        ansD.value = val1 / val2;
+                }
+        </script>
+  </head>
+  <body>
+        T = <input type="text" id="T" name="T" value=""/>
+      r = <input type="text" id="r" name="r" value=""/>
+        <input type="button" name="Sumbit" value="Click here" onclick="javascript:divideNumbers()"/>
+       Value of F (N) = <input type="text" id="Value of F (N)" name="Value of F (N)" value=""/>
+  </body><br><br>
+<script>
+function LengthConverter1(valNum) {
+  document.getElementById("outputMeters").innerHTML=valNum/100;
+}
+</script>
+<script>
+function LengthConverter2(valNum) {
+  document.getElementById("outputNewton").innerHTML=valNum*10;
+}
+</script>
+</p>
+</div>
+</div>
+<br>
+<hr class="m-0" />
+<br/>
+
+                   
+                    
+                </div>
+            </section>
+        </div>
+<br>
+</section>
+<div class="container">
+  <div class="column">
+    <div class="col-sm">
+      <h5>  <a class="btn btn-primary btn-lg" href="#" role="button">2D Graphical Representation</a></h3>
+      <section class="resume-section" id="2d graphical representation">
+                <div class="resume-section-content">
+ </div>
+            </section>
+           
+            
+    </div>
+<div class="column2" style = "text-align:center;">
+    <h2>Torque value</h2>
+    
+    <h4>Select the value of Torque :</h4>
+        <form>
+            <select id="ValTorque">
+                <option>Select Value</option>
+                <option>50</option>
+                <option>100</option>
+                <option>150</option>
+            </select>
+        </form>
+        <br>
+        <input type="button" class="button" id="Process" value="Proceed" onclick="simulate()">
+        <br>
+        <br>
+        <canvas id="DemoCanvas" width="400" height="400" style="border:1px solid #000000;">
+            <p>Your browser doesn't support canvas - Please use compatible browser</p>
+        </canvas>
+        <br/>
+        <br/>
+        <h5><p style="color:red"> When torque value increases angle will increase</p></h5>
+    
+    <script>
+        var x = document.getElementById('ValTorque');
+        var c = document.getElementById('DemoCanvas');
+        var ctx = c.getContext("2d");
+        ctx.beginPath();
+        ctx.clearRect(0, 0, c.width, c.height);
+        ctx.moveTo(50, 140);
+        ctx.lineTo(150, 140);
+        ctx.lineTo(150, 260);
+        ctx.stroke();
+        function simulate(){
+            if (x.value == 'Select Value') {
+                ctx.beginPath();
+                ctx.clearRect(0, 0, c.width, c.height);
+                ctx.moveTo(50, 140);
+                ctx.lineTo(150, 140);
+                ctx.lineTo(150, 260);
+                ctx.stroke();
+            }
+            else if (x.value == '50') {
+                ctx.beginPath();
+                ctx.clearRect(0, 0, c.width, c.height);
+                ctx.moveTo(50, 140);
+                ctx.lineTo(150, 140);
+                ctx.lineTo(175, 257.5);
+                ctx.stroke();
+            }
+            else if (x.value == '100') {
+                ctx.beginPath();
+                ctx.clearRect(0, 0, c.width, c.height);
+                ctx.moveTo(50, 140);
+                ctx.lineTo(150, 140);
+                ctx.lineTo(200, 250);
+                ctx.stroke();
+            }
+            else {
+                ctx.beginPath();
+                ctx.clearRect(0, 0, c.width, c.height);
+                ctx.moveTo(50, 140);
+                ctx.lineTo(150, 140);
+                ctx.lineTo(250, 210);
+                ctx.stroke();
+            }
+        }
+    </script>
+<br/>
+<br/>
+<br/>
+<FOOTER> 
+    <CENTER><p style="
+    FONT-SIZE: -webkit-xxx-large;
+    BACKGROUND-COLOR: aquamarine;
+">RIGVIT</p></CENTER>
+    </FOOTER>
+
+
+
+</div>
+</div>
+</body>
+</html>
+
+
+    	
+
+      
+    

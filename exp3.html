@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<head>
+<title>Experiment</title>
+<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font_size: 25px;
+}
+
+.header {
+  padding: 45px;
+  text-align: center;
+  background: #1abc9c; /*585858*/
+  color: white;
+}
+
+.header h1 { font-size: 50px; }
+
+.navbar {
+  overflow: hidden; /* Hide overflow */
+  background-color: #333; /* Dark background color */
+}
+
+/* Style the navigation bar links */
+.navbar a {
+  float: left; /* Make sure that the links stay side-by-side */
+  display: block; /* Change the display to block, for responsive reasons (see below) */
+  color: white; /* White text color */
+  text-align: center; /* Center the text */
+  padding: 14px 20px; /* Add some padding */
+  text-decoration: none; /* Remove underline */
+}
+
+
+/* Change color on hover/mouse-over */
+.navbar a:hover {
+  background-color: #ddd; /* Grey background color */
+  color: black; /* Black text color */
+}
+
+/* Ensure proper sizing */
+* {
+  box-sizing: border-box;
+}
+
+/* Column container */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Main column */
+.main {
+  flex: 100%; /* Set the width of the main content */
+  background-color: white; /* White background color */
+  padding: 20px; /* Some padding */
+  height: 100vh;
+  text-align: justify;
+  font-style: italics;
+  font-size: 18px;
+}
+
+.navbar a.right {
+  float: right; /* Float a link to the right */
+}
+
+</style>
+</head>
+
+<body>
+
+<div id ="header" class="header">
+<h1 style="text-align:center;">EXPERIMENT</h1>
+<h3 style="text-align:center;"> Diode</h3>
+</div>
+
+<div class="navbar">
+<a href="list2.html">List of Experiments</a>
+<a href="bjt.html" class="right">Simulator</a>
+</div>
+
+<div class="row">
+  <div class="main">
+    <h2>Aim: </h2>
+    <p>To calculate various resistances in a BJT.</p>
+<br>
+    <h2>Objective: </h2>
+    <p>Our project’s primary objective is calculating the various resistances in a bjt equipped circuit namely RE RB and RC which stands for Emitter Resistance, Base Resistance and Collector Resistance in an Emitter Biased Configuration.<p>
+<br>
+     <h2>Theory</h2>
+     <p>Emitter biased configuration often called self-emitter biasing configuration uses both emitter and collector base feedback to stabilize the collector current but the output has reduced gain because of the base resistor connection.</p>
+<p>The current flowing from the emitter causes a voltage drop across Re in such a direction that it forward biases the emitter base junction.</p>
+<p>So, if the emitter current increases voltage drop across Ire also increases. Since the polarity of this voltage reverse biases the emitter base junction Ib automatically decreases. Therefore, the emitter current increases less than it would have done had there been no self-biasing resistor.</p>
+<p>Resistor values are generally set so that the voltage drop across emitter resistor Re is approximately 10% of the VCC and the current flowing through resistor Rb is 10% of the collector current Ic.</p>
+<p>Emitter bias is a very good and stable way to bias transistors if both positive a negative power supplies are available.  Emitter bias fluctuates very little with temperature and transistor replacement.</p>
+<br>
+<h2>Procedure</h2>
+<ol>
+<li><p>So, to start it off first thing is that we can use the concept that we did in the first expt. the silicon and gallium. We know that the minimum threshold voltage for si and ge are totally different. It’s 0.7v for Si and 0.4v for Ge which will give us different values. </p></li>
+<li><p>So, the factors which user has to input are Ic which is the collector current Vc which is the voltage at collector Vcc is the input supply. Beta is 80. Beta is in simple terms the current gain of a particular bjt. So, it's generally 80-100, Ve is the voltage across emitter. </p></li>
+<li><p>In a particular bjt the collector is at the top. Then there is the base and then there is emitter at the bottom and emitter is grounded so the circuit is emitter biased. </p></li>
+<li><p>The first thing is Vbe. It means voltage or rather potential difference across base and the emitter. It's given by Vb-Ve. Notice how the Vbe is already 0.7 . That's because it's silicon. If it was germanium, it would have been 0.4. </p></li>
+<li><p>So here is where we'll use our first experiment concept. We already knew Ve it was entered by the user. It we want we can reverse this. Make user enter Vb and then find Ve. The Vbe would be the same. </p></li>
+<li><p>Similarly, this next part. Vce stands for vc-ve. We have both so it can be calculated easily.</p></li>
+<li><p>Now comes the main part of our experiment. This is crucial. We'll have to apply Kirchhoff laws but it's very easy We now have 3 parameters left. Rc Re and Rb. Resistances across collector emitter and base respectively.</p></li>
+<li><p>First let's see Rb We'll be using kvl law. Kirchhoff voltage law For Rb which is resistant attached to base How the formula came is that we take a loop from 12v across the Ib x Rb to the Vb. The law states that all voltages in a loop are equal to zero. So, it basically looks like 12-IbRb-3.1=0. Here Ib=Ic/Beta. Both are given.</p></li>
+<li><p>Now let's see Re It's a bit different as the emitter is grounded so the potential of ground is 0volts Now since it's equal to 0v it's very easy. 2.4-IeRe=0 Now normally we don't do this that we replace the emitter current by collector current but they're nearly equal so that's why we substitute Ic in that place and then get the value of Re.</p></li>
+<li><p>Similarly, for Rb which we just discussed above the formula would be (Vcc-Vb)/Ib.</p></li>
+<br>
+<h2>Software Used: </h2><p> LTSpice for schematics</p>
+<br>
+<h2>Schematic: </h2>
+<p>We have used a very basic circuit. <p>
+<img src="bjt.jpeg" height="400" width="400">
+<br>
+<h2>Limitations</h2>
+<p>As of now this program can only work for emitter bias configuration. For base bias and collector bias configurations we’ll have to construct different circuit diagrams.</p>
+</body>
+</html>

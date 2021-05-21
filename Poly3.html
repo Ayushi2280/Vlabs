@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>RigVIT</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+.navbar {
+  overflow: hidden;
+  background-color: #337ab7;
+}
+
+.navbar a {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+}
+
+.navbar a.right {
+  float: right;
+}
+
+.navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.header {
+  padding: 80px;
+  text-align: center;
+  background: #255379;
+  color: white;
+}
+
+.header h1 {
+  font-size: 40px;
+}
+
+.row {  
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.side {
+  -ms-flex: 30%;
+  flex: 30%;
+  background-color: #f1f1f1;
+  padding: 20px;
+}
+
+.main {   
+  -ms-flex: 70%;
+  flex: 70%;
+  background-color: white;
+  padding: 20px;
+}
+
+.polaroid {
+  width: 80%;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 25px;
+}
+
+.container {
+  text-align: center;
+  padding: 10px 20px;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.footer {
+  padding: 20px;
+  text-align: center;
+  background: #337ab7;
+  color: white;
+}
+
+.button {
+  background-color: #23527c;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 2px 2px;
+  cursor: pointer;
+}
+
+a:link, a:visited {
+  background-color: #337ab7;
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+a:hover, a:active {
+  background-color: #23527c;
+}
+
+@media screen and (max-width: 700px) {
+  .row {   
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .navbar a {
+    float: none;
+    width: 100%;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>RigVIT</h1>
+  <h5>Physics Lab</h5>
+</div>
+
+<div class="navbar">
+    <a href="RIGVIT Homepage.html">Home</a>
+    <a href="RIGVIT 2.html">Labs & Experiments</a>
+    <a href="Poly2.html" class="right">Back to Simulator</a>
+  </div>
+
+<div class="row">
+  <div class="side">
+    <h2>Observations</h2>
+    <br>
+    <h5>The resultant force vector in first canvas is having the same size (magnitude) as that of the closing side of the polygon in the second canvas.</h5>
+    <br>
+    <h5>The direction & orientation is also the same for both of them.</h5>
+    <br>
+    <h5>The calculated magnitude and direction provided by the simulator provides justification for the above points.</h5>
+    <br>
+    <h5>Try doing some analytical calculations on paper, you will notice that the results you got from the simulator matching what you have done on paper.</h5>
+  </div>
+  <div class="main" style = "text-align:center;">
+    <h2>Summary</h2>
+    <br>
+    <p>The experiment gives proof for the theory. The Law of Polygon of Forces : if any number of coplanar concurrent forces can be represented in magnitude and direction by the sides of a polygon taken in order; then their resultant will be represented by the closing side of the polygon taken in opposite order.</p>
+    <br>
+    <br>
+    <a href="RIGVIT Homepage.html">Back to Home</a>
+  </div>
+</div>
+
+
+
+<div class="footer">
+  <h2>RigVIT</h2>
+</div>
+
+</body>
+</html>

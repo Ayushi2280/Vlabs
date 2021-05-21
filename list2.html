@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>List</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+/* Style the body */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+/* Header/logo Title */
+.header {
+  padding: 60px;
+  text-align: center;
+  background: #1abc9c;
+  color: white;
+}
+
+/* Increase the font size of the heading */
+.header h1 {
+  font-size: 40px;
+}
+
+div{ width: auto; }
+
+/* Column container */
+.row {  
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.side {
+  flex: 30%;
+  background-color: #f1f1f1;
+  padding: 20px;
+  height: 450px
+}
+
+/* Main column */
+.main {   
+  flex: 70%;
+  background-color: white;
+  padding: 20px;
+}
+
+a{
+  float: center; /* Make sure that the links stay side-by-side */
+  display: block; /* Change the display to block, for responsive reasons (see below) */
+  color: black; /* White text color */
+  text-align: center; /* Center the text */
+  padding: 30px 20px; /* Add some padding */
+  text-decoration: none; /* Remove underline */
+}
+
+.pic{
+ position: relative;
+ text-align: center;
+ color: white;
+}
+
+.centered{
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%, -50%);
+ font-size: 30px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>List of Experiments</h1>
+</div>
+
+<div class="row">
+    <div class="side">
+      <h2>Vlab</h2>
+      <div class="pic">
+        <a href = "semiconductor.html"><img class = "center" src = "https://www.etftrends.com/wp-content/uploads/2019/04/Semiconductor-Sector-ETF-Rallies-on-Qualcomm-Apple-Agreement.jpg" height="250" 
+width="350"></a>
+<div class="centered">SEMICONDUCTOR</div>
+      </div>
+    </div>
+    <div class="main" style = "text-align:center; font-size:30px">
+      <a href = "experiment.html">Experiment on Diode</a>
+      <a href = "exp3.html">Experiment on BJT</a>
+      <a href = "exp2.html">Experiment on Zener Diode</a>
+    </div>
+  </div>
+</body>
+</html>

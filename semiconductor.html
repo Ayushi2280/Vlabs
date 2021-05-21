@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<head>
+<title>Semiconductors</title>
+<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font_size: 25px;
+}
+
+.header {
+  padding: 45px;
+  text-align: center;
+  background: #1abc9c; /*585858*/
+  color: white;
+}
+
+.header h1 { font-size: 50px; }
+
+.navbar {
+  overflow: hidden; /* Hide overflow */
+  background-color: #333; /* Dark background color */
+}
+
+/* Style the navigation bar links */
+.navbar a {
+  float: left; /* Make sure that the links stay side-by-side */
+  display: block; /* Change the display to block, for responsive reasons (see below) */
+  color: white; /* White text color */
+  text-align: center; /* Center the text */
+  padding: 14px 20px; /* Add some padding */
+  text-decoration: none; /* Remove underline */
+}
+
+
+/* Change color on hover/mouse-over */
+.navbar a:hover {
+  background-color: #ddd; /* Grey background color */
+  color: black; /* Black text color */
+}
+
+/* Ensure proper sizing */
+* {
+  box-sizing: border-box;
+}
+
+/* Column container */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Main column */
+.main {
+  flex: 100%; /* Set the width of the main content */
+  background-color: white; /* White background color */
+  padding: 20px; /* Some padding */
+  height: 100vh;
+  text-align: justify;
+  font-style: italics;
+  font-size: 18px;
+}
+
+.intro{
+  font-size: 18px;
+  flex: 70%;
+}
+
+.side{ flex: 30%; }
+
+img {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  height: 200px;
+  width: 250px;
+  margin: 10px auto 20px;
+  display: block;
+}
+
+img:hover { transform: scaleX(-1); }
+
+div{ width: auto; }
+
+.footer {
+  padding: 10px; /* Some padding */
+  text-align: left; /* Center text*/
+  background: black; /*  #dddGrey background */
+}
+
+.footer a{
+  text-decoration: none; 
+  color: white;
+}
+
+.example{
+  padding: 45px;
+  display: inline-block;
+  background: #ddd;
+  width: 1500px;
+}
+
+.start{
+  width: 300px;
+  height: 250px;
+  margin: 0;
+  position: absolute;
+  top: 60%;
+  left: 75%;
+}
+
+.navbar a.right {
+  float: right; /* Float a link to the right */
+}
+
+</style>
+</head>
+
+<body>
+
+<div id ="header" class="header">
+<h1 style="text-align:center;">SEMICONDUCTOR</h1>
+</div>
+
+<div class="navbar">
+<a href="#intrinsicsemiconductor">Intrinsic Semiconductor</a>
+<a href="#extrinsicsemiconductor">Extrinsic Semicondutor</a>
+<a href="#pnjunction">P-N Junction</a>
+<a href="list2.html" class="right">List of Experiments</a>
+</div>
+
+<div class="row">
+  <div class="intro"><br />
+    <h2>Introduction</h2>
+    <p>A semiconductor is a substance which generally is a solid which can conduct electricity under some given conditions. The conductivity of a Semiconductor can be varied using a process known as doping.</p>
+<p>They have a conductivity which lies between metals and non metals​.</p>
+<p>When we are talking about semiconductors , elements like Germanium(Ge) and Silicon(Se) and compounds like Gallium Arsenide(GeAs), Gallium Phosphide(GaP) and Cadmium Sulfide(CdS) come intro picture.​</p>
+<p>The conductivity (σ) of these materials lies between that of insulators and conductors in the range of 10^-8 S/cm to about 10^2 S/cm​</p>
+<p>A silicon atom has four electrons in the valence shell and it shares these electrons with 4 other surrounding atom making a covalent bond and not an ionic bond. Thus they are all bound together tightly.​</p>
+<p>Now when there is no kinetic energy meaning when the surrounding temperatures are low the electrons completely fill the energy band which is called the valance band leaving the other band void of electrons 
+called the conduction band ,both separated by an energy gap  called the bandgap.​</p>
+<p>Now at lower temperatures where there is no kinetic energy meaning there are no vibrations, the electrons are held tightly at their respective places and there are no free electrons meaning electricity cannot be 
+conducted.​</p>
+<p>However, when we provide kinetic energy in form of high temperature , the kinetic energy causes thermal vibrations which causes some electrons to break free from the covalent bond and exist as free electrons. 
+These free electrons can roam around and conduct electricity provided we give an external potential.​</p>
+<p>Once an electron moves away from a covalent bond, there is an electron vacancy associated with that bond. This vacancy may be filled by a neighboring electron, which results in a shift of the vacancy location 
+from one crystal site to another. This vacancy may be regarded as a fictitious particle, dubbed a “hole,” that carries a positive charge and moves in a direction opposite to that of an electron.​​</p>
+<p>Most of the important semiconductors have bandgaps in the range 0.25 to 2.5 electron volts (eV). The bandgap of silicon, for example, is 1.12 eV, and that of gallium arsenide is 1.42 eV. In contrast, the bandgap 
+of diamond, a good crystalline insulator, is 5.5 eV.​​</p>
+  </div>
+  <div class="side"><img class="start" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fg.foolcdn.com%2Feditorial%2Fimages%2F566724%2Fgettyimages-1141230722.jpg&f=1&nofb=1" alt="img" /></div>
+</div><br />
+
+<div class="main">
+  <div id="intrinsicsemiconductor">
+    <h2>Intrinsic Semiconductor</h2>
+    <p>Intrinsic Semiconductors- are undoped semiconductors. What this means is that holes in the valence band are created by thermal excitation to the conduction band in which the electrons break free the bond 
+barrier and move out as free electrons.​</p>
+<p>At low temperatures the number of electrons and holes inside the intrinsic semiconductors is same. However holes and electrons have different rate of mobilities, typically the electrons have faster mobility than holes. 
+For example an electron will move at a velocity of 1,500 centimeters per second under an electric field of one volt per centimeter—while the hole mobility is 500 cm2/V·s​​</p>
+<p>Electrical conduction in intrinsic semiconductors is quite poor at room temperature. The electron and hole mobilities in a particular semiconductor generally decrease with increasing temperature.​</p>
+<p>To produce higher conduction, one can intentionally introduce impurities or foreign bodies (typically to a concentration of one part per million host atoms). This is called doping, a process that increases conductivity 
+despite some loss of mobility. ​</p><br />
+    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fvivadifferences.com%2Fwp-content%2Fuploads%2F2019%2F09%2FIntrinsic-Semiconductor.png&f=1&nofb=1" alt="img" />
+    <div class="example"><pre>EXAMPLE 1 :
+
+Find the resistivity of an intrinsic semiconductor with intrinsic concentration of 2.5 X 1019 per m3. The mobilities of electrons and holes are 
+0.40 m2/V-s and 0.20 m2/V-s.
+
+Solution: Given data are:
+
+Intrinsic concentration (ni) = 2.5 X 10^19/m3
+
+Mobility of electrons(μn) = 0.40 m2/V-s
+
+Mobility of holes(μp) = 0.20 m2/V-s
+
+Conductivity of an intrinsic semiconductor(σi) = nie[μn + μp]
+
+Resistivity  (⍴i) = 1/σi= 1/nie[μn + μp]
+                       = 1/2.5 X 10^19 X 1.6 X10^-19 [0.40 + 0.20]
+                       = 1/2.5 X 1.6 X 0.6 = 0.4166 ꭥ-m
+  </pre></div>
+  </div><br />
+
+  <br /><div id="extrinsicsemiconductor">
+    <h2>Extrinsic Semiconductor</h2>
+    <p>An extrinsic semiconductor on the other hand is a semiconductor doped by a specific impurity which is able to modify its electrical properties, making it suitable for electronic applications (diodes, transistors, etc.).
+ It involves a chemical reaction which allows the impurities to form ionic bonds with silicon atom.​</p>
+<p>For example, if a silicon atom is replaced by an atom with five outer electrons, such as arsenic four of the electrons form covalent bonds with the four neighboring silicon atoms. The fifth electron becomes a 
+conduction electron that is donated to the conduction band.​​</p>
+<p>Depending upon the group of the impurities which are being doped we get two very different results in terms of extrinsic semiconductors which are: </p>
+<ol>
+<li><p>P type Semiconductors -  in which a third group element is doped which have three electrons in their valence shell . Example is boron or gallium.</p>​</li>
+<li><p>N type Semiconductors - in which a fifth group element is doped which have five electrons in their valence shell . Example is arsenic or phosphorous.​</p></li><br />
+    <h3>P-type semiconductors</h3>
+    <p>In these semiconductors when they are doped with the impurities, they form holes inside the silicon lattice they are mixed in where a silicon electron has nothing to bond to. The absence of the electron creates 
+a positive charge which can attract the free electrons formed due to the ionic bond thereby making it possible to conduct electricity .</p>
+<p>A p-type semiconductor has a lower electron density n and a higher hole density p than the same intrinsic semiconductor. Electrons are said to be the minority carriers whereas holes are the majority carriers.​​</p><br />
+    <img src="http://www.optique-ingenieur.org/en/courses/OPI_ang_M05_C02/res/c_fig_05.jpg" alt="img" />
+    <h3>N-type semiconductor</h3>
+    <p>In these semiconductors after the impurities have been added we find that both of the elements(one of the intrinsic semiconductor and the other being the impurity) have five electrons in their valence shells. 
+Since there is an excess of electrons and the fifth electrons have nothing to bond to ,it is free to move around , allowing the current to flow through provided that a potential exists.​</p>
+<p>A n-type semiconductor has a higher electron density n and a lower hole density p than the same intrinsic semiconductor. Holes are said to be the minority carriers whereas electrons are the majority carriers.​​</p><br />
+    <img src="http://www.optique-ingenieur.org/en/courses/OPI_ang_M05_C02/res/c_fig_07.jpg" alt="img" />
+  </div>
+  <div class="example"><pre>EXAMPLE 2 :
+
+The intrinsic carrier concentration of silicon sample at 300° K  is 1.5 X 1016/m3. If after doping, the number of majority carriers is 5 X 1026/m3, 
+the minority density carrier is
+
+Solution: Given:
+
+ni = 1.5 X 10^16/m3
+
+n = 5 X 10^20/m3
+
+p =ni2n = (1.5 X 10^16)^2/5 X 10^20
+
+             = 2.25 X 10^32/5 X 10^20
+
+             = 4.5 X 10^11
+</pre></div><br />
+
+  <br /><div id="pnjunction">
+  <h2>P - N Junction</h2>
+  <p>A p-n junction diode is two-terminal or two-electrode semiconductor device, which allows the electric current in only one direction while blocks the electric current in opposite or reverse direction. If the diode is 
+forward biased, it allows the electric current flow. On the other hand, if the diode is reverse biased, it blocks the electric current flow. P-N junction semiconductor diode is also called as p-n junction semiconductor 
+device.​​</p>
+  <p>When the n-type semiconductor is joined with the p-type semiconductor, a p-n junction is formed. The p-n junction, which is formed when the p-type and n-type semiconductors are joined, is called as p-n junction 
+diode. The p-n junction diode is made from the semiconductor materials such as silicon, germanium, and gallium arsenide. For designing the diodes, silicon is more preferred over germanium. The p-n junction diodes 
+made from silicon semiconductors works at higher temperature when compared with the p-n junction diodes made from germanium semiconductors. Also the silicon turns on at 0.7V as compared to germanium which 
+does at 0.4V hence giving us more room to work precisely.​</p><br />
+  <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.physics-and-radio-electronics.com%2Felectronic-devices-and-circuits%2Fsemiconductor-diodes%2Fimages%2Fsymbolofdiode.png&f=1&nofb=1" alt="img" />
+  <div class="example"><pre>EXAMPLE 3.1 :
+
+In a P-type germanium,ni = 2.1 X 1019 m-3density of boron 4.5 X 1023 atoms/m3. The electron and hole mobility are 0.4 and 0.2 m2 v-1 s-1 
+respectively. What is its conductivity before and after addition of boron atoms?
+
+Solution:
+
+Given:
+
+Intrinsic carrier concentration ni = 2.1 X 10^19 m-³
+
+Mobility of electrons μe = 0.4 m² v-1 s-1
+
+Mobility of holes μh = 0.2 m² v-1 s-1
+
+a)Conductivity before the addition of boron atoms
+
+σ = nie(μe + μh)
+
+= 2.1 X 10^19 X 1.6 X 10^-19(0.4+0.2)
+
+=  2.016  Ω-1 m-1
+
+b)Conductivity after the addition of boron atoms. Boron is a P-type impurity atom
+
+σ = p e μh
+
+ = 4.5 X 10^23 X 1.6 X 10^-19 X 0.2
+
+σ =  14400.0 Ω-1 m-1.</pre></div><br />
+
+<div class="example"><pre>EXAMPLE 3.2 :
+
+In a N-type germanium,ni = 2.1 X 10^19 ³density of arsenic 4.5 X 10^23 atoms/m³. The electron and hole mobility are 0.4 and 0.2 m² v-1 s-1 
+respectively. What is its conductivity before and after addition of arsenic atoms.
+
+Solution:
+
+Given:
+
+Intrinsic carrier concentration ni = 2.1 X 10^19 m-³
+
+Mobility of electrons μe = 0.4 m² v-1 s-1
+
+Mobility of holes μh = 0.2 m² v-1 s-1
+
+a)Conductivity before the addition of arsenic atoms
+
+σ = nie(μe + μh)
+
+= 2.1 X 10^19 X 1.6 X 10^-19(0.4+0.2)
+
+=  2.016  Ω-1 m-1
+
+b)Conductivity after the addition of arsenic atoms. Arsenic is a N-type impurity atom
+
+σ = p e μe
+
+ = 4.5 X 10^23 X 1.6 X 10^-19 X 0.4
+
+σ =  28800.0 Ω-1 m-1.
+</pre></div>
+</div><br />
+<br /><div class="footer"><p><a href="#header">Go back to the top</a><br />
+<br />
+<br /><a alt="REFRENCES">REFRENCES</a><br />
+<ol>
+<li><a href="http://www.optique-ingenieur.org/en/courses/OPI_ang_M05_C02/co/Contenu_04.html#:~:text=An%20extrinsic%20semiconductor%20is%20a,(light%20emitters%20and%20detectors)">Fundamentals of Semiconductor</a></li>
+<li><a href="https://www.gatepaper.in/2014/10/gate-questions-on-semiconductors.html">Electronics</a></li>
+</ol></p></div>
+</div>
+
+</body>
+</html> 

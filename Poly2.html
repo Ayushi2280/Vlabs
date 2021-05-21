@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>RigVIT</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src = "Chart.bundle.js"></script>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+.header {
+  padding: 80px;
+  text-align: center;
+  background: #255379;
+  color: white;
+}
+
+.header h1 {
+  font-size: 40px;
+}
+
+.navbar {
+  overflow: hidden;
+  background-color: #337ab7;
+}
+
+.navbar a {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+}
+
+.navbar a.right {
+  float: right;
+}
+
+.navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.row {  
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.GraphContainer {  
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.GC {
+  -ms-flex: 100%;
+  flex: 100%;
+  background-color: #ffffff;
+  padding: 20px;
+}
+
+.column1 {
+  -ms-flex: 35%;
+  flex: 35%;
+  background-color: #f1f1f1;
+  padding: 20px;
+}
+
+.column2 {   
+  -ms-flex: 30%;
+  flex: 30%;
+  background-color: white;
+  padding: 20px;
+}
+
+.column3 {   
+  -ms-flex: 35%;
+  flex: 35%;
+  background-color: #f1f1f1;
+  padding: 20px;
+}
+
+.button {
+  background-color: #23527c;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 2px 2px;
+  cursor: pointer;
+}
+
+.polaroid {
+  width: 80%;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 25px;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.footer {
+  padding: 20px;
+  text-align: center;
+  background: #337ab7;
+  color: white;
+}
+
+@media screen and (max-width: 700px) {
+  .row {   
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .navbar a {
+    float: none;
+    width: 100%;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>RigVIT</h1>
+  <h5>Physics Lab</h5>
+</div>
+
+<div class="navbar">
+  <a href="RIGVIT Homepage.html">Home</a>
+  <a href="RIGVIT 2.html">Labs & Experiments</a>
+  <a href="Poly3.html" class="right">Summary</a>
+</div>
+
+<div class="row">
+  <div class="column2" style = "text-align:center;">
+    <h2>Select Load Values (in N)</h2>
+    <br>
+    <canvas id="myCanvas1" width="600" height="600" style="border:1px solid #000000;">
+      <p>Your browser doesn't support canvas - Please use compatible browser</p>
+    </canvas>
+    <br>
+    <br>
+    <form>
+      <select id="L1">
+          <option>Select Load</option>
+          <option>10</option>
+          <option>20</option>
+          <option>30</option>
+          <option>40</option>
+          <option>50</option>
+      </select>
+    </form>
+    <br>
+    <form>
+      <select id="L2">
+          <option>Select Load</option>
+          <option>10</option>
+          <option>20</option>
+          <option>30</option>
+          <option>40</option>
+          <option>50</option>
+      </select>
+    </form>
+    <br>
+    <form>
+      <select id="L3">
+          <option>Select Load</option>
+          <option>10</option>
+          <option>20</option>
+          <option>30</option>
+          <option>40</option>
+          <option>50</option>
+      </select>
+    </form>
+    <br>
+    <form>
+      <select id="L4">
+          <option>Select Load</option>
+          <option>10</option>
+          <option>20</option>
+          <option>30</option>
+          <option>40</option>
+          <option>50</option>
+      </select>
+    </form>
+    <br>
+    <br>
+    <input type="button" class="button" id="P1" value="Apply" onclick="apply()">
+    <input type="button" class="button" id="P2" value="Polygon" onclick="polygon()">
+    <input type="button" class="button" id="P3" value="Resultant" onclick="resultant()">
+  </div>
+  <div class="column3" style = "text-align:center;">
+    <h2>Result</h2>
+    <br>
+    <canvas id="myCanvas2" width="600" height="600" style="border:1px solid #000000;">
+      <p>Your browser doesn't support canvas - Please use compatible browser</p>
+    </canvas>
+    <h5>Resultant (closing side) [in 'N'] = </h5><h2 id = "RM"></h2>
+    <h5>Direction 'θ' [in Degrees] = </h5><h2 id = "RD"></h2>
+    <br>
+    <p style="color:red">Please reload the page to reset the parameters</p>
+  </div>
+</div>
+<div class="footer">
+  <h2>RigVIT</h2>
+</div>
+
+</body>
+<script>
+  var c1, c2, ctx, cty, p1, p2, p3, p4;
+
+  var a, b, c, d;
+  a = 0;
+  b = 0;
+  c = 0;
+  d = 0;
+
+  var x, y, z;
+  x = 0;
+  y = 0;
+  z = 0;
+  
+  c1 = document.getElementById("myCanvas1");
+  ctx = c1.getContext("2d");
+  ctx.beginPath();
+  ctx.translate(300, 300);
+  ct1 = c1.getContext("2d");
+  ct1.beginPath();
+
+  c2 = document.getElementById("myCanvas2");
+  cty = c2.getContext("2d");
+  cty.beginPath();
+  cty.translate(300, 300);
+  ct2 = c2.getContext("2d");
+  ct2.beginPath();
+
+  p1 = document.getElementById("L1");
+  p2 = document.getElementById("L2");
+  p3 = document.getElementById("L3");
+  p4 = document.getElementById("L4");
+
+  function apply() { 
+    ctx.moveTo(0, 0);
+    ctx.lineWidth = 5;
+    if (p1.value == '10') {
+      ctx.lineTo(0, 50);
+      ctx.lineTo(-10, 40);
+      ctx.lineTo(10, 40);
+      ctx.lineTo(0, 50);
+      ctx.stroke();
+      ctx.moveTo(0, 0);
+    }
+    if (p1.value == '20') {
+      ctx.lineTo(0, 100);
+      ctx.lineTo(-10, 90);
+      ctx.lineTo(10, 90);
+      ctx.lineTo(0, 100);
+      ctx.stroke();
+      ctx.moveTo(0, 0);
+    }
+    if (p1.value == '30') {
+      ctx.lineTo(0, 150);
+      ctx.lineTo(-10, 140);
+      ctx.lineTo(10, 140);
+      ctx.lineTo(0, 150);
+      ctx.stroke();
+      ctx.moveTo(0, 0);
+    }
+    if (p1.value == '40') {
+      ctx.lineTo(0, 200);
+      ctx.lineTo(-10, 190);
+      ctx.lineTo(10, 190);
+      ctx.lineTo(0, 200);
+      ctx.stroke();
+      ctx.moveTo(0, 0);
+    }
+    if (p1.value == '50') {
+      ctx.lineTo(0, 250);
+      ctx.lineTo(-10, 240);
+      ctx.lineTo(10, 240);
+      ctx.lineTo(0, 250);
+      ctx.stroke();
+      ctx.moveTo(0, 0);
+    }
+    if (p2.value == '10') {
+      ctx.lineTo(-50, 0);
+      ctx.lineTo(-40, -10);
+      ctx.lineTo(-40, 10);
+      ctx.lineTo(-50, 0);
+      ctx.stroke();
+      ctx.moveTo(0, 0);
+    }
+    if (p2.value == '20') {
+      ctx.lineTo(-100, 0);
+      ctx.lineTo(-90, -10);
+      ctx.lineTo(-90, 10);
+      ctx.lineTo(-100, 0);
+      ctx.stroke();
+      ctx.moveTo(0, 0);
+    }
+    if (p2.value == '30') {
+      ctx.lineTo(-150, 0);
+      ctx.lineTo(-140, -10);
+      ctx.lineTo(-140, 10);
+      ctx.lineTo(-150, 0);
+      ctx.stroke();
+      ctx.moveTo(0, 0);
+    }
+    if (p2.value == '40') {
+      ctx.lineTo(-200, 0);
+      ctx.lineTo(-190, -10);
+      ctx.lineTo(-190, 10);
+      ctx.lineTo(-200, 0);
+      ctx.stroke();
+      ctx.moveTo(0, 0);
+    }
+    if (p2.value == '50') {
+      ctx.lineTo(-250, 0);
+      ctx.lineTo(-240, -10);
+      ctx.lineTo(-240, 10);
+      ctx.lineTo(-250, 0);
+      ctx.stroke();
+      ctx.moveTo(0, 0);
+    }
+    if (p3.value == '10') {
+      ctx.lineTo(0, -50);
+      ctx.lineTo(-10, -40);
+      ctx.lineTo(10, -40);
+      ctx.lineTo(0, -50);
+      ctx.stroke();
+      ctx.moveTo(0, 0);
+    }
+    if (p3.value == '20') {
+      ctx.lineTo(0, -100);
+      ctx.lineTo(-10, -90);
+      ctx.lineTo(10, -90);
+      ctx.lineTo(0, -100);
+      ctx.stroke();
+      ctx.moveTo(0, 0);
+    }
+    if (p3.value == '30') {
+      ctx.lineTo(0, -150);
+      ctx.lineTo(-10, -140);
+      ctx.lineTo(10, -140);
+      ctx.lineTo(0, -150);
+      ctx.stroke();
+      ctx.moveTo(0, 0);
+    }
+    if (p3.value == '40') {
+      ctx.lineTo(0, -200);
+      ctx.lineTo(-10, -190);
+      ctx.lineTo(10, -190);
+      ctx.lineTo(0, -200);
+      ctx.stroke();
+      ctx.moveTo(0, 0);
+    }
+    if (p3.value == '50') {
+      ctx.lineTo(0, -250);
+      ctx.lineTo(-10, -240);
+      ctx.lineTo(10, -240);
+      ctx.lineTo(0, -250);
+      ctx.stroke();
+      ctx.moveTo(0, 0);
+    }
+    if (p4.value == '10') {
+      ctx.lineTo(50, 0);
+      ctx.lineTo(40, -10);
+      ctx.lineTo(40, 10);
+      ctx.lineTo(50, 0);
+      ctx.stroke();
+      ctx.moveTo(0, 0);
+    }
+    if (p4.value == '20') {
+      ctx.lineTo(100, 0);
+      ctx.lineTo(90, -10);
+      ctx.lineTo(90, 10);
+      ctx.lineTo(100, 0);
+      ctx.stroke();
+      ctx.moveTo(0, 0);
+    }
+    if (p4.value == '30') {
+      ctx.lineTo(150, 0);
+      ctx.lineTo(140, -10);
+      ctx.lineTo(140, 10);
+      ctx.lineTo(150, 0);
+      ctx.stroke();
+      ctx.moveTo(0, 0);
+    }
+    if (p4.value == '40') {
+      ctx.lineTo(200, 0);
+      ctx.lineTo(190, -10);
+      ctx.lineTo(190, 10);
+      ctx.lineTo(200, 0);
+      ctx.stroke();
+      ctx.moveTo(0, 0);
+    }
+    if (p4.value == '50') {
+      ctx.lineTo(250, 0);
+      ctx.lineTo(240, -10);
+      ctx.lineTo(240, 10);
+      ctx.lineTo(250, 0);
+      ctx.stroke();
+      ctx.moveTo(0, 0);
+    }
+    document.getElementById("L1").disabled=true;
+    document.getElementById("L2").disabled=true;
+    document.getElementById("L3").disabled=true;
+    document.getElementById("L4").disabled=true;
+  }
+  function polygon() {
+    if (p1.value == '10') {
+      a = 50
+    }
+    if (p1.value == '20') {
+      a = 100
+    }
+    if (p1.value == '30') {
+      a = 150
+    }
+    if (p1.value == '40') {
+      a = 200
+    }
+    if (p1.value == '50') {
+      a = 250
+    }
+    if (p2.value == '10') {
+      b = -50
+    }
+    if (p2.value == '20') {
+      b = -100
+    }
+    if (p2.value == '30') {
+      b = -150
+    }
+    if (p2.value == '40') {
+      b = -200
+    }
+    if (p2.value == '50') {
+      b = -250
+    }
+    if (p3.value == '10') {
+      c = 50
+    }
+    if (p3.value == '20') {
+      c = 100
+    }
+    if (p3.value == '30') {
+      c = 150
+    }
+    if (p3.value == '40') {
+      c = 200
+    }
+    if (p3.value == '50') {
+      c = 250
+    }
+    if (p4.value == '10') {
+      d = -50
+    }
+    if (p4.value == '20') {
+      d = -100
+    }
+    if (p4.value == '30') {
+      d = -150
+    }
+    if (p4.value == '40') {
+      d = -200
+    }
+    if (p4.value == '50') {
+      d = -250
+    }
+    cty.moveTo(0, 0);
+    cty.lineWidth = 5;
+    cty.lineTo(0, a);
+    cty.lineTo(-10, a-10);
+    cty.lineTo(10, a-10);
+    cty.lineTo(0, a);
+    cty.lineTo(b, a);
+    cty.lineTo(b+10, a-10);
+    cty.lineTo(b+10, a+10);
+    cty.lineTo(b, a);
+    cty.lineTo(b, -c+a);
+    cty.lineTo(b-10, -c+a+10);
+    cty.lineTo(b+10, -c+a+10);
+    cty.lineTo(b, -c+a);
+    cty.lineTo(-d+b, -c+a);
+    cty.lineTo(-d+b-10, -c+a-10);
+    cty.lineTo(-d+b-10, -c+a+10);
+    cty.lineTo(-d+b, -c+a);
+    cty.stroke();
+  }
+  function resultant() {
+    var h, v, h1, h2, v1, v2, r1, r2;
+    h1 = p2.options[p2.selectedIndex].text;
+    h2 = p4.options[p4.selectedIndex].text;
+    v1 = p1.options[p1.selectedIndex].text;
+    v2 = p3.options[p3.selectedIndex].text;
+    h = Math.abs(h1-h2);
+    v = Math.abs(v1-v2);
+    r1 = Math.sqrt((v**2)+(h**2));
+    document.getElementById("RM").innerHTML = r1.toFixed(2);
+    y = a - c;
+    x = b - d;
+    if (x > 0) {
+      if (y > 0) {
+        ct1.moveTo(0, 0);
+        ct1.strokeStyle = "#0000ff";
+        ct1.lineTo(x, y);
+        ct1.translate(x, y);
+        ct1.rotate(105 * Math.PI / 180);
+        ct1.lineTo(0, 10);
+        ct1.stroke();
+        ct2.moveTo(0, 0);
+        ct2.strokeStyle = "#0000ff";
+        ct2.lineTo(x, y);
+        ct2.translate(x, y);
+        ct2.rotate(105 * Math.PI / 180);
+        ct2.stroke();
+        r2 = (Math.atan(-y/x)) * (180 / Math.PI);
+      }
+      if (y < 0) {
+        ct1.moveTo(0, 0);
+        ct1.strokeStyle = "#0000ff";
+        ct1.lineTo(x, y);
+        ct1.translate(x, y);
+        ct1.rotate(75 * Math.PI / 180);
+        ct1.lineTo(0, 10);
+        ct1.stroke();
+        ct2.moveTo(0, 0);
+        ct2.strokeStyle = "#0000ff";
+        ct2.lineTo(x, y);
+        ct2.translate(x, y);
+        ct2.rotate(75 * Math.PI / 180);
+        ct2.stroke();
+        r2 = (Math.atan(-y/x)) * (180 / Math.PI);
+      }
+    }
+    if (x < 0) {
+      if (y > 0) {
+        ct1.moveTo(0, 0);
+        ct1.strokeStyle = "#0000ff";
+        ct1.lineTo(x, y);
+        ct1.translate(x, y);
+        ct1.rotate(-105 * Math.PI / 180);
+        ct1.lineTo(0, 10);
+        ct1.stroke();
+        ct2.moveTo(0, 0);
+        ct2.strokeStyle = "#0000ff";
+        ct2.lineTo(x, y);
+        ct2.translate(x, y);
+        ct2.rotate(-105 * Math.PI / 180);
+        ct2.stroke();
+        r2 = (Math.atan(-y/x)) * (180 / Math.PI) - 180;
+      }
+      if (y < 0) {
+        ct1.moveTo(0, 0);
+        ct1.strokeStyle = "#0000ff";
+        ct1.lineTo(x, y);
+        ct1.translate(x, y);
+        ct1.rotate(-75 * Math.PI / 180);
+        ct1.lineTo(0, 10);
+        ct1.stroke();
+        ct2.moveTo(0, 0);
+        ct2.strokeStyle = "#0000ff";
+        ct2.lineTo(x, y);
+        ct2.translate(x, y);
+        ct2.rotate(-75 * Math.PI / 180);
+        ct2.stroke();
+        r2 = (Math.atan(-y/x)) * (180 / Math.PI) + 180;
+      }
+    }
+    document.getElementById("RD").innerHTML = r2.toFixed(2);
+  }
+</script>
+</html>

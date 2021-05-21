@@ -1,0 +1,274 @@
+<html chtml lang="en">
+  <head>  
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<script src = "Chart.bundle.js"></script>
+
+  <title>RigVIT</title>
+    </head>
+ <body style="
+    background-color: aquamarine;
+">
+
+<header style="background-color: black">
+ <div class="navbar navbar-dark bg-dark">
+      <a class="navbar-brand" href="demo.html">RigVIT</a>
+  <a class="nav-link" href="demo.html">Home <span class="sr-only">(current)</span></a>
+ <a class="nav-link" href="a.html" id="Introduction">Introduction</a>
+   <a href="./list.html"> List of experiments</a> 
+  <a class="nav-link" href="./audience.html">For the Audience</a>
+   <a class="nav-link" href="./Feedback.html">Feedback</a>
+</div>
+<img src="./images/Mech1.png " class="rounded mx-auto d-block" alt="...">
+
+<section id="Introduction" style="background-color: white">
+
+        <div class="card">
+<div id="Theory2.0" wfd-id="4">
+            
+  <div class="navbar">
+  <a href="#Theory2.0" class="right">Theory</a>
+  <a href="./Procedure2.html" class="right" >Procedure</a>
+  <a href="./Calculator2.html" class="right">Calculator</a>
+  <a href="./Questions.html" class="right">Questions</a>
+  </div>
+   
+
+   <div class="card bg-light mb-3" wfd-id="70" style="
+    margin: auto; background-color: white; 
+"> 
+
+ <div id="Simulation" wfd-id="5" style="
+    margin: auto; background-color: white; 
+">    
+
+                
+     <section id="Simulation" style="display: block;" wfd-id="11">
+          
+
+                    <div class="heading" id="Simulation" wfd-id="13" style="text-transform: uppercase;-webkit-text-stroke: medium;">
+                        Simulation and Working                     </div>
+            <p style="text-indent: 50px;"></p>In this we select the value of Diameter of the spring coil, Number of turns , material selection and deflection.<br>
+            <p style="text-indent: 50px;">Click on <b>Material Selection "</b></p>
+            <br><br>
+                    </div>
+    <div class="Matselection" style = "text-align:center;">
+   
+    <center><h5>Select the Material</h5></center>
+    <form>
+      <select id="MatSel">
+            <option value="0">Select material</option>
+            <option value="1">Aluminium</option>
+            <option value="2">Copper</option>
+            <option value="3">Steel</option>
+          </select>
+    </form>
+ <br><center><h5>Diameter of Spring Wire
+ </h5></center>
+ <form>
+  <select id="DiameterD1">
+    
+            <option value="0">Diameter of Spring Wire (in mm)</option>
+            <option value="1">20</option>
+            <option value="2" >40</option>
+            <option value="3" >60</option>
+        </select>
+    </form>
+        <form> <br><center><h5>Diameter of Coil</h5></center>
+  <select id="DiameterN1">
+  
+            <option value="0">Diameter of Coil(in mm)</option>
+            <option value="1">100</option>
+            <option value="2" >150</option>
+            <option value="3">200</option>
+        </select>
+    </form>
+
+ <br><center><h5>Number of turns </h5></center>
+        <form>
+  <select id="LengthT1">
+  
+            
+            <option value="0">Select Number of turn </option>
+                <option value="1" >10</option>
+            <option value="2">20</option>
+            <option value="3">30</option>
+        </select>
+    </form>
+
+
+     <br><center><h5>Load (in N) </h5></center>
+        <form>
+  <select id="Load">
+  
+            
+            <option value="0" >Load Applied</option>
+            <option value="1">100</option>
+            <option value="2">200</option>
+            <option value="3">300</option>
+            <option value="4">400</option>
+            <option value="5">500</option>
+        </select>
+    </form>
+   
+   <section id= "calculate">
+
+
+
+   <br><center><h5>Result</h5></center>
+               <h5 id='Result'></h5>
+   <br> <center>Deflection</center><br>   
+
+    <table>
+    <tbody><tr>
+    
+    <center>
+    <button onclick="simulate()" style="margin-left:1cm">CALCULATE</button>
+
+    <button onclick="clr()" style="margin-left:0.5cm">CLEAR</button>
+</center>
+    <br><center><h5>Stiffness</h5></center>
+    <h5 id='Stiffness'></h5> <br>
+
+   <br> <button onclick="plot()" id="Graph" value="Plot">GRAPH</button>
+    <br><br>
+    <canvas id="mygraph"  width = "800px"  height="800px">;
+        
+    </canvas>
+
+
+    </section>
+       
+
+
+    <script type="text/javascript">
+
+            var i,o;
+            
+            i = [0];
+            o = [0]; 
+      
+    	  function simulate()
+        {
+        		var d,c,t,l,AL,MV,Res,D,C,T,L,R,K;
+        		    
+        	  AL = document.getElementById("MatSel").value;
+            d = document.getElementById("DiameterN1");
+        	  c = document.getElementById("DiameterD1");
+        	  t = document.getElementById("LengthT1");
+        	  l = document.getElementById("Load");
+            L = l.options[l.selectedIndex].text;
+            D = d.options[d.selectedIndex].text;     	 
+            C = c.options[c.selectedIndex].text;
+            T = t.options[t.selectedIndex].text;
+          
+
+
+        	 if(AL== 1)
+           { 
+              MV=69;
+              Res = (16*L*D*D*D*T)/(MV*C*C*C*C);
+             var R = Res.toFixed(2);
+              document.getElementById('Result').innerHTML = R ;
+            }
+        	  else if (AL ==2 )
+            {
+              MV=45;
+              Res = (16*L*D*D*D*T)/(MV*C*C*C*C);
+              var R = Res.toFixed(2);
+              document.getElementById('Result').innerHTML = R ;
+            }
+             else if (AL ==3 )
+            {
+              MV=78;
+              Res = (16*L*D*D*D*T)/(MV*C*C*C*C);
+              var R = Res.toFixed(2);
+              document.getElementById('Result').innerHTML = R ;
+            }
+          else
+          { 
+        	      	alert("Select the appropriate element");
+        	}
+
+            
+            K = L/R;
+           document.getElementById('Stiffness').innerHTML = K ;
+          
+            
+
+            i.push(L);
+            i.sort(function(a,b){return a-b});
+
+            o.push(R);
+            o.sort(function(a,b){return a-b});
+
+            
+           
+        }
+     function plot(){
+      var ctg = document.getElementById('mygraph').getContext('2d');
+      ctg.beginPath();
+      var myGraph = new Chart(ctg, {
+        type: 'line',
+        data: {
+          labels: i,
+          datasets: [{
+            label: 'Deflection (in mm)',
+            data: o,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero: true
+              }
+            }]
+          }
+        }
+      });
+    } 
+
+        function clr()
+        {
+
+            document.getElementById("MatSel").value = "0";
+            document.getElementById("DiameterN1").value = "0";
+            document.getElementById("DiameterD1").value = "0";
+            document.getElementById("LengthT1").value = "0";
+            document.getElementById("Load").value = "0";
+        }
+    </script>
+
+<script src="http://latex.codecogs.com/latexit.js" type="text/javascript"></script><script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <CENTER><p style="
+      FONT-SIZE: -webkit-xxx-large;
+      BACKGROUND-COLOR: aquamarine;
+  ">RIGVIT</p></CENTER>
+      </FOOTER>
+  
+  </body>
+  </head>
+  </html>

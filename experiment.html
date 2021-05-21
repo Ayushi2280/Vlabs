@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<head>
+<title>Experiment</title>
+<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font_size: 25px;
+}
+
+.header {
+  padding: 45px;
+  text-align: center;
+  background: #1abc9c; /*585858*/
+  color: white;
+}
+
+.header h1 { font-size: 50px; }
+
+.navbar {
+  overflow: hidden; /* Hide overflow */
+  background-color: #333; /* Dark background color */
+}
+
+/* Style the navigation bar links */
+.navbar a {
+  float: left; /* Make sure that the links stay side-by-side */
+  display: block; /* Change the display to block, for responsive reasons (see below) */
+  color: white; /* White text color */
+  text-align: center; /* Center the text */
+  padding: 14px 20px; /* Add some padding */
+  text-decoration: none; /* Remove underline */
+}
+
+
+/* Change color on hover/mouse-over */
+.navbar a:hover {
+  background-color: #ddd; /* Grey background color */
+  color: black; /* Black text color */
+}
+
+/* Ensure proper sizing */
+* {
+  box-sizing: border-box;
+}
+
+/* Column container */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Main column */
+.main {
+  flex: 100%; /* Set the width of the main content */
+  background-color: white; /* White background color */
+  padding: 20px; /* Some padding */
+  height: 100vh;
+  text-align: justify;
+  font-style: italics;
+  font-size: 18px;
+}
+
+.navbar a.right {
+  float: right; /* Float a link to the right */
+}
+
+</style>
+</head>
+
+<body>
+
+<div id ="header" class="header">
+<h1 style="text-align:center;">EXPERIMENT</h1>
+<h3 style="text-align:center;"> Diode</h3>
+</div>
+
+<div class="navbar">
+<a href="list2.html">List of Experiments</a>
+<a href="simulator.html" class="right">Simulator</a>
+</div>
+
+<div class="row">
+  <div class="main">
+    <h2>Aim: </h2>
+    <p>To calculate current and plot voltage vs current graphs.</p>
+<br>
+    <h2>Objective: </h2>
+    <p>To take different semiconductor materials namely Silicon (Se), Germanium (Ge) and Gallium Arsenide (GaAs) and plot output voltage vs current graphs at some fixed resistance and potential through a DC 
+battery and to realize the different results all three materials give to select the proper element as per requirement.<p>
+<br>
+     <h2>Theory</h2>
+     <p>The biasing voltages for all these three materials are different which gives us different results in the output voltages. The biasing voltage can be understood as the minimum voltage required for the device to be 
+turned on. It’s the threshold voltage below which the device won’t be able to function at all. The biasing voltage for Silicon is around 0.71mV, for Germanium is 0.27mV or around 0.3mV and for Gallium Arsenide 
+1.03mV, given that they are placed in room temperature at 25°C.</p>
+<p>Since the biasing voltages are different, we would get different results in the end which would be observable in the simulation. This would help us choose the right materials for the right places.</p>
+<p>Silicon has been dominant all along even though it has less free electrons than Germanium (why is why Germanium requires lesser biasing voltage to move electrons) because Silicon first is cheaper as it is 
+available in abundance and Silicon crystals are not easily damaged by the application of excess heat which makes it more practical element to work with than others. But we can use different elements too where such 
+heat is not generated which is why this project is for.</p>
+<br>
+<h2>Procedure</h2>
+<ol>
+<li><p>We first draw this basic circuit as shown below. This circuit has a battery say around 3V Dc supply, some resistance as resistance is important to limit the current flow inside the circuit and mainly through the 
+diode which will prevent the diode from dying prematurely due to excess current flow otherwise. We have a simple P-N junction diode attached next to the resistance in forward biased way. </p></li>
+<li><p>Now we use the ideal diode law and I=V/R and equate both the equations and find the value of potential drops at resistor and diode namely Vr and Vd. Generally we would do it using formula but we shall use 
+graphs instead .</p></li>
+<li><p>Next, we draw the diode curve according to the biasing voltage which would be 0.7mV for Se, 0.4mV for Ge and 1.03mV for GaAs.</p></li>
+<li><p>Now for the two intercepts, since we are doing it graphically, we would only need two points, first would be the voltage supplied at the battery and second would be the current value I=V/R. We shall join the 
+two intercepts which will intersect the diode curve at some point giving us the value where the resistor current and the diode current are the same. Since we had assumed the current to be zero at first, this intersection 
+would give us the exact value of current flowing inside the circuit.</p></li>
+<br>
+<h2>Software Used: </h2><p> LTSpice for schematics</p>
+<br>
+<h2>Schematic: </h2>
+<p>We have used a very basic circuit which has a potential at one end, some resistance and finally a diode attached to it. <p>
+<img src="circuit.jpeg" height="400" width="400">
+<br>
+<h2>Limitations</h2>
+<p>At this current stage we only have Se, Ge and GaAs for experimentation and at 25°C. We don’t have other elements to work on and at different temperatures and other external factors the elements may behave 
+differently.</p>
+</body>
+</html>

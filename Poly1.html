@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>RigVIT</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+.header {
+  padding: 80px;
+  text-align: center;
+  background: #255379;
+  color: white;
+}
+
+.header h1 {
+  font-size: 40px;
+}
+
+.navbar {
+  overflow: hidden;
+  background-color: #337ab7;
+}
+
+.navbar a {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+}
+
+.navbar a.right {
+  float: right;
+}
+
+.navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.row {  
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.side {
+  -ms-flex: 30%;
+  flex: 30%;
+  background-color: #f1f1f1;
+  padding: 20px;
+}
+
+.main {   
+  -ms-flex: 70%;
+  flex: 70%;
+  background-color: white;
+  padding: 20px;
+}
+
+.fakeimg {
+  background-color: #aaa;
+  width: 100%;
+  padding: 20px;
+}
+
+.footer {
+  padding: 20px;
+  text-align: center;
+  background: #337ab7;
+  color: white;
+}
+
+a:link, a:visited {
+  background-color: #337ab7;
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+a:hover, a:active {
+  background-color: #23527c;
+}
+
+@media screen and (max-width: 700px) {
+  .row {   
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .navbar a {
+    float: none;
+    width: 100%;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>RigVIT</h1>
+  <h5>Physics Lab</h5>
+</div>
+
+<div class="navbar">
+  <a href="RIGVIT Homepage.html">Home</a>
+  <a href="RIGVIT 2.html">Labs & Experiments</a>
+  <a href="Poly2.html" class="right">Proceed to Simulator</a>
+</div>
+
+<div class="row">
+  <div class="side">
+    <h2>About Vectors</h2>
+    <img src="Vector Def.png" alt="Vectors" style="height:200px;">
+    <p>In mathematics and physics, a vector is an element of a vector space that has both a magnitude and a direction. Geometrically, we can picture a vector as a directed line segment, whose length signifies its magnitude and the arrowhead and orientation indicating its direction (from its tail to its arrowhead).</p>
+  </div>
+  <div class="main">
+    <h2>Law of Polygon of Forces</h2>
+    <h5>Our Aim is to verify the law of polygon of forces for a number of coplaner forces in equilibrium.</h5>
+    <h2>Theory & Pre-Requisites</h2>
+    <h5>What is Law of Polygon of Forces ?</h5>
+    <p>The Law of Polygon of Forces states that – if any number of coplanar concurrent forces can be represented in magnitude and direction by the sides of a polygon taken in order; then their resultant will be represented by the closing side of the polygon taken in opposite order”.
+      <br>  
+      <br>Also, if the forces form a closed polygon (a closed figure with 3 or more than 3 edges), then the system is in equilibrium. Two figures below shows a system of five forces F1, F2, F3, F4 and F5. The forces are forming a closed polygon in the first figure, hence they are in equilibrium. In the second figure, the system is not in equilibrium, and the closing side, shown by dotted line, denotes the Resultant R of the force system.
+    </p>
+    <br>
+    <img src="Vectors.jpg" alt="Vectors" style="height:200px;">
+    <br>
+    <h2>Operating the Simulator (Procedure)</h2>
+    <h5>The Purpose of this simulator is to provide you a safe and virtual experimental environment where you have the choice to select from a number of combinations of parameters in order to get plenty of numerical data for your physical lab assignments</h5>
+    <ul>
+      <li><b>Four</b> sets of force vector parameters are given in this simulator with each set having <b>five</b> different options for its magnitude (ranging from 10N to 50N) for this experiment.</li><br>
+      <li>To keep it simple for understanding, these force vectors are kept in two pairs of <b>anti parallel vectors</b> acting along the <b>X and Y axes</b> in both <b>+ve and -ve directions</b>.</li><br>
+      <li>There are three buttons given <b>Apply, Polygon & Resultant</b></li><br>
+      <li>Click <b>Apply</b> after selecting the magnitudes of all four force vectors <b>(This will lock the given dropdown menus for selection)</b> and you can see the 2D representation of the forces acting on a point in all four axes on the left Canvas Space (if on PC) or in first Canvas Space (if on Mobile Devices)</li><br>
+      <li>Click <b>Polygon</b> to get the constituting polygon of these vectors taken in order -y >> -x >> y >> x axis on after another.</li><br>
+      <li>Click <b>Resultant</b> to get the resultant of the vectors in the first canvas and closing side of the polygon in the second canvas. Observe Both the Canvas. Conclude Anything ??</li><br>
+      <li>If you want to experiment some more, just reload the webpage and keep on going.</li>
+    </ul>
+    <h2>Now time to do some Experiments</h2>
+    <h5><a href = "Poly2.html">Go to simulator</a></h5>
+  </div>
+</div>
+
+<div class="footer">
+  <h2>RigVIT</h2>
+</div>
+
+</body>
+</html>

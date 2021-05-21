@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Simulator</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+/* Style the body */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+/* Header */
+.header {
+  padding: 40px;
+  text-align: center;
+  background: #1abc9c;
+  color: white;
+}
+
+/* Increase the font size of the heading */
+.header h1 {
+  font-size: 40px;
+}
+
+/* Style the top navigation bar */
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+}
+
+/* Style the navigation bar links */
+.navbar a {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+}
+
+/* Right-aligned link */
+.navbar a.right {
+  float: right;
+}
+
+/* Change color on hover */
+.navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Column container */
+.row {  
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+/* button */
+.button {
+  background-color: grey;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 2px 2px;
+  cursor: pointer;
+}
+
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+/* Main column */
+.main {
+  flex: 35%; /* Set the width of the main content */
+  background-color: white; /* White background color */
+  padding: 20px; /* Some padding */
+  height: 100vh;
+  text-align: justify;
+  font-style: italics;
+  font-size: 18px;
+}
+
+.sim{
+  font-size: 30px;
+  flex: 35%;
+  text-align: center;
+  margin: auto;
+  width: 70%;
+  height: 120vh;
+  border-right: 2px solid black;
+  border-left: 2px solid black;
+  padding: 10px;
+}
+
+.side{
+ flex: 30%;
+ text-align: center;
+ margin: auto;
+ width: 70%;
+ height: 100vh;
+ padding: 10px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Experiment </h1>
+  <h2>Zener Diode</h2>
+</div>
+
+<div class="navbar">
+  <a href="experiment.html">Experiment</a>
+</div>
+
+<div class="row">
+  <div class="main">
+  <div>
+    <h2>Instructions</h2>
+    <ol type="1">
+                    <li>Typically V would be 10 volts, R would be 100 ohm and V<sub>z</sub> would be the amount of voltage to be maintained at zener diode and I<sub>zk</sub> is the knee current of the zener diode.</li>
+                    <li>V<sub>z</sub> will always be less than V.</li>
+                    <li>If load  of the R<sub>L</sub> resistor is increased, then the current flowing in that loop will decrease as we have increased the resistance. So the current flowing through the zener diode will increase as current takes the least resistive path to travel. Thus if there is infinite resistance which means open loop condition all of the current will flow through zener diode and none will pass through the R<sub>L</sub> loop.</li>
+                </ol> </div>
+</div>
+<br>
+<br>
+
+<div class="sim">
+<div>
+<br>
+<br>
+<div>
+<div>
+    <h4>Enter Parameter Values</h4>
+      <br>
+       <div>
+            <div>
+               Voltage of the battery, V : <input id='vl' oninput="one()">  V<br>
+<br>
+               Resistance of the circuit, R :&nbsp&nbsp&nbsp&nbsp<input id='res' oninput="three()">  &#937;<br>
+<br>
+               Voltage to be maintained by the zener diode, V<sub>z</sub> : &nbsp&nbsp&nbsp<input id='znrvl' oninput="four()"> V<br>
+                <br>
+               Knee current of the zener diode, I<sub>zk</sub> : &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input id='izk' oninput="two()"> mA<br>
+<br>
+
+                <input type="button" id='rst' value="Result" onclick="simulate()" style="top:140px; width:100px; right:20px"/>
+            </div></div>
+            
+
+  </div>
+  </div>
+  </div>
+  </div>
+
+  <div class="side">
+<div> <h2>For this circuit to work properly as a voltage regulator: </h2>
+<h3>The source current should be I<sub>S</sub><h3 id="isource"></h3>mA<h3>
+<h3>The maximum value of the load current should be less than I<sub>L</sub>(max) <h3 id="iload"></h3>mA<h3>
+<h3>The minimum value of the load resistor should be more than, R<sub>L</sub>(min) <h3 id="rl"></h3>&#937;<h3>
+<h3>The minimum power rating of zener diode should be equal to P<sub>Z</sub> <h3 id="powrate"></h3>mW<h3>
+</div>
+<div id="ckt_values1" style="position:relative; top:50px;left:250px; height:300px; width:400px">
+                <p>
+                    <img src ="zdia.png" style="width:450px;height:250px;position:absolute; right:200px" />
+
+                <input  id='vb'    placeholder="Volt"  style="background-color:#e6f5ff;position:absolute; top:130px;  right:510px; width:70px" readonly/>
+                <input id='amps' placeholder="Current" style="background-color:#e6f5ff;position:absolute; top:23px;  right:375px; width:70px" readonly/>    
+                <input id="resistance"   placeholder="Resistance" style="background-color:#e6f5ff;position:absolute; top:-12px;  right:460px; width:90px" readonly/>
+                
+                <input id="znrvol"  placeholder="ZenerVolatge" style="background-color:#e6f5ff;position:absolute; top:180px;  right:320px; width:110px" readonly/>
+            </div>
+
+</div>
+
+<script>
+
+function simulate() {
+var vol, isrc, ilc, rlc, v = document.getElementById('vl').value, z = document.getElementById('znrvl').value, resist = document.getElementById('res').value, iknee = document.getElementById('izk').value, power;
+        vol = Math.abs(v - z);
+        isrc = (vol/resist)*1000;
+document.getElementById('isource').innerHTML = isrc.toFixed(2); 
+        ilc = Math.abs(isrc - iknee);
+document.getElementById('iload').innerHTML = ilc.toFixed(2); 
+        rlc = (z/ilc)*1000;
+        document.getElementById('rl').innerHTML = rlc.toFixed(2); 
+power = z*isrc;
+document.getElementById('powrate').innerHTML = power.toFixed(2);
+}
+
+function one() {
+document.getElementById('vb').placeholder = document.getElementById('vl').value;
+}
+
+function two() {
+document.getElementById('amps').placeholder = document.getElementById('izk').value;
+}
+
+function three() {
+document.getElementById('resistance').placeholder = document.getElementById('res').value;
+}
+
+function four() {
+document.getElementById('znrvol').placeholder = document.getElementById('znrvl').value;
+}
+
+</script>
+</body>
+</html>

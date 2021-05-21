@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<head>
+<title>Experiment</title>
+<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font_size: 25px;
+}
+
+.header {
+  padding: 45px;
+  text-align: center;
+  background: #1abc9c; /*585858*/
+  color: white;
+}
+
+.header h1 { font-size: 50px; }
+
+.navbar {
+  overflow: hidden; /* Hide overflow */
+  background-color: #333; /* Dark background color */
+}
+
+/* Style the navigation bar links */
+.navbar a {
+  float: left; /* Make sure that the links stay side-by-side */
+  display: block; /* Change the display to block, for responsive reasons (see below) */
+  color: white; /* White text color */
+  text-align: center; /* Center the text */
+  padding: 14px 20px; /* Add some padding */
+  text-decoration: none; /* Remove underline */
+}
+
+
+/* Change color on hover/mouse-over */
+.navbar a:hover {
+  background-color: #ddd; /* Grey background color */
+  color: black; /* Black text color */
+}
+
+/* Ensure proper sizing */
+* {
+  box-sizing: border-box;
+}
+
+/* Column container */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Main column */
+.main {
+  flex: 100%; /* Set the width of the main content */
+  background-color: white; /* White background color */
+  padding: 20px; /* Some padding */
+  height: 100vh;
+  text-align: justify;
+  font-style: italics;
+  font-size: 18px;
+}
+
+.navbar a.right {
+  float: right; /* Float a link to the right */
+}
+
+</style>
+</head>
+
+<body>
+
+<div id ="header" class="header">
+<h1 style="text-align:center;">EXPERIMENT</h1>
+<h3 style="text-align:center;"> Zener Diode</h3>
+</div>
+
+<div class="navbar">
+<a href="list2.html">List of Experiments</a>
+<a href="zd.html" class="right">Simulator</a>
+</div>
+
+<div class="row">
+  <div class="main">
+    <h2>Aim: </h2>
+    <p>To calculate various parameters when Zener Diode is functioning as a Voltage Regulator.</p>
+<br>
+    <h2>Objective: </h2>
+    <p>Our project’s primary objective is to present the functionalities of a Zener Diode of how it can act as a voltage regulator by controlling the amount of flow of voltage across the whole circuit.<p>
+<br>
+     <h2>Theory</h2>
+     <p>A normal semiconductor generally blocks the flow of current in the reverse direction but it will suffer from breakdown or damage if the reverse voltage is high in quantity. However, Zener Diodes are specially
+designed to have a low and specified Reverse Breakdown Voltage which takes advantage of reverse voltage applied to it. When the reverse voltage reaches a predetermined value the Zener diode starts to conduct 
+electricity in reverse direction. </p>
+<p>Now Zener Diodes can be used to produce a stabilized voltage under varying load conditions. By passing a small current through the diode via a current limiting resistor (Rs), the Zener Diode will conduct sufficient
+current to maintain a voltage drop out.</p>
+<p>By connecting a Zener Diode in the circuit as shown below, a more stable output voltage can be obtained.</p>
+<br>
+<img src="aim_zener.jpg" height="600" width="600">
+<br>
+<p>Here resistor Rs is connected in series with Zener diode to limit the flow of current in the circuit through the diode. Output is taken from RL across the Zener diode.</p>
+<p>When there is no load connected the load current will be zero and everything will pass through the Zener diode only. A smaller Rs will cause higher diode current with resistance of load RL. So appropriate values 
+must be considered so that Zener’ s maximum power rating (the maximum power till which a Zener diode can work perfectly) is exceeded.</p>
+<p>Now as discussed earlier since a Zener diode is always operated in reverse biased condition as the fact that it can conduct while being in the reverse breakdown stage, a simple voltage regulator can a made 
+using the Zener diode to maintain a constant output.</p>
+<p>The Zener voltage regulator consists of a current limiting resistor RS connected in series with the input voltage (generally a dc battery) with the Zener diode connected in parallel with the load RL in this reverse 
+biased condition.</p>
+<h2>Procedure</h2>
+<ol>
+<li><p>We first draw this basic circuit as shown below. So, V is the battery, Rs is resistance of circuit is the amount of voltage to be maintained by the Zener diode. And Izk a separate knee current. So, the user will 
+have to enter these values. Typically, (assumptions) V would be 10 volts R would be 100 ohm and Vz would be the amount of voltage to be maintained at Zener diode and Izk is the knee current of the Zener diode.</p></li>
+<li><p>So, the first thing we will calculate is the value of source current flowing in loop 1. Here the Vz is 5 and V or Vs(source) is 10. These factors are interchangeable. But Vz will always be less than V.</p></li>
+<li><p>Now we need to calculate load current denoted by ILc which is the amount of current flowing through the Zener diode. So Izk is 10 mA.</p></li>
+<li><p>Now since we know the current and the voltage values, we can calculate the load resistor value. So, the conclusion here is that for this circuit to work properly as a voltage regulator the minimum value of the 
+load resistor should be more than 125 ohms in this case</p></li>
+<li><p>Here's an interesting thing. Now if you increase the load of the RL resistor the current flowing in that loop will decrease as we have increased the resistance. So what will happen is that the current flowing 
+through the Zener diode will increase as current takes the least resistive path to travel. Thus, if there is infinite resistance which means open loop condition all of the current will flow through Zener diode and none will 
+pass through the Rl loop</p></li>
+<li><p>In the worst-case scenario where the RL is infinite which means open loop.</p></li>
+<li><p>So, the minimum power rating of Zener diode should be equal to 250 milli watt in this example.</p></li>
+<li><p>So, to function properly as a voltage regulator the min value of load resistor should be 125 ohms.</p></li>
+<li><p>Now what we can do is keep increasing the resistance to get a different value of the power rating. RL has to be 125ohm for this and then we can keep increasing it to get different values of power rating.</p></li>
+<br>
+<h2>Software Used: </h2><p> LTSpice for schematics</p>
+<br>
+<h2>Schematic: </h2>
+<p>We have used a very basic circuit which has a Dc supply on one end, loads like Rs and RL and a Zener diode connected in parallel with RL where the output would be calculated from.<p>
+<br>
+<img src="zdia.png" height="400" width="700">
+<br>
+<p>Here R1=Rs and R2=RL</p>
+<br>
+<h2>Limitations</h2>
+<p>As of now this program can only work for a certain input and not for various ranges.  As for the Zener diode circuits itself the diode can sometimes cause electrical noise when it tries to stabilize the voltage. </p>
+</body>
+</html>

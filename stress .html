@@ -1,0 +1,276 @@
+<html lang="en"><head>
+ 
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <script src = "Chart.bundle.js"></script>
+  <title>RigVIT</title>
+    </head>
+ <body style="
+    background-color:white;
+">
+
+
+<header style="background-color: black;">
+ <div class="navbar navbar-dark bg-dark">
+      <a class="navbar-brand" href="demo.html">RigVIT</a>
+  <a class="nav-link" href="demo.html">Home <span class="sr-only">(current)</span></a>
+ <a class="nav-link" href="a.html" id="Introduction">Introduction</a>
+   <a href="./list.html"> List of experiments</a> 
+  <a class="nav-link" href="./audience.html">For the Audience</a>
+   <a class="nav-link" href="./Feedback.html">Feedback</a>
+</div>
+<img src="./images/Mech1.png " class="rounded mx-auto d-block" alt="...">
+
+        
+<section id="Introduction">
+  <section id="Introduction" class="section section-padded" wfd-id="28" style="background-color: white">
+    <div class="container" wfd-id="47" margin="auto"style="background-color: white"; >
+      
+      <div class="card bg-light mb-3" wfd-id="70" style="
+  margin: auto; background-color: white; 
+  "> 
+  
+  <div id="Introduction" wfd-id="5" style="
+  margin: auto; background-color: white; 
+  ">
+  
+<div id="Theory" wfd-id="5">
+            
+   <div class="navbar">
+  <a href="#Theory">Theory</a>
+  <a href="./Procedure.html">Procedure</a>
+  <a href="./Calculator.html" class="right">Calculator</a>
+  <a href="./Questions.html" class="right">Questions</a>
+
+</div>
+
+</style>
+
+<script language="JavaScript" type="text/javascript">
+  var e = [0];
+  var d = [0];
+
+  function calcforce(){
+    var form = document.force;
+    var i = form.stressunits.selectedIndex;
+    var stressunitsvalue = form.stressunits.options[i].value; 
+    var j = form.areaunits.selectedIndex;
+    var areaunitsvalue = form.areaunits.options[j].value;
+
+    var s = form.stress.value;
+    
+    var a = form.area.value;
+   
+    var result = (s * stressunitsvalue) * (a * areaunitsvalue);
+
+    d.push(s);
+
+    form.result.value =result;
+
+    e.push(result);
+    
+    return true;
+  }
+
+    function plot(){
+      var ctx = document.getElementById('myGraph')
+      var myGraph = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: d,
+          datasets: [{
+            label: 'Force',
+            data: e,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero: true
+              }
+            }]
+          }
+        }
+      });
+    }
+
+</script>
+
+<body bgcolor="#CCCCCC" bottommargin="0" topmargin="0">
+<table  align="center" bgcolor="white">
+<tbody><tr><td>
+<table align="left">
+        <tbody>
+        <tr>
+          <td>
+<p class="MsoNormal" style="line-height: 150%;">
+
+<p>The term stress (s) is utilized to precise the stacking in terms of drive connected to a certain cross-sectional range of an question. From the viewpoint of stacking, push is the connected constrain or framework of strengths that tends to misshape a body. 
+<center>Stress: σ = F/A
+
+
+σ = amount of stress on the object , F = force that is acting on the object. = A = cross-sectional area
+</center>
+  
+  <a name="strain"></a>
+ <div class="calcforce" id="calcforce">
+  <form name="force" style="
+    margin: 0 -200; 
+">
+  <a name="force"></a>
+  
+            <p align="center"><font size="2" face="verdana" color="darkblue"><strong><b><span wfd-id="8"> Calculate Force</span></b></strong></font></p>
+    
+    <p style="margin-left:7cm"></p>
+    <font size="2" face="verdana" color="red"><strong><b style="margin-left:5.5cm">Enter your values:</b></strong></font>
+
+    <table style="margin-left:6cm; margin-top:.3cm">
+    
+    <tbody><tr>
+<div class="Stress" id="Stress">
+            <td><font size="2" face="verdana" color="darkblue"><b>Stress:</b></font></td>
+      <td><input type="text" size="7" maxlength="15" name="stress" wfd-id="45"></td>
+      <td><font size="2" face="verdana" color="darkblue"><b>
+    <select name="stressunits" wfd-id="7">
+<option value="1" selected="">Pascal</option>
+<option value="101325.00000005">Atmosphere</option>
+<option value="100000">Bar</option>
+<option value=" 0.1">Dyne/Centimeter^2</option>
+<option value=" 2986.0800000014">Foot of Water</option>
+<option value=" 3386.3881578967">Inch of Mercury</option>  
+<option value="248.84000000046">Inch of Water</option>   
+<option value="1000">Kilonewton/Meter^2</option>   
+<option value="100">Millibar</option>
+<option value="1">Newton/Meter^2</option>
+<option value="47.880258980374">Pound/Foot^2</option>
+<option value=" 6894.7572931783">Pound/Inch^2</option>   
+<option value="133.32236842109">Torr</option>  
+</select>
+    </b></font></td>
+    </tr>
+    </div>
+    <div class="Area" id="Area">
+    <tr>
+
+      <td><font size="2" face="verdana" color="darkblue"><b>Area:</b></font></td>
+      <td><input type="text" size="7" maxlength="15" name="area" wfd-id="44"></td>
+
+      <td><font size="2" face="verdana" color="darkblue"><b>
+    <select name="areaunits" wfd-id="6">
+<option value="1" selected="">Metre^2</option>
+<option value="100">Are</option>
+<option value="1e-28">Barn</option>
+<option value="0.0001">Centimetre^2</option>
+<option value="0.09290304">Foot^2</option>
+<option value="10000">Hectare</option>
+<option value="0.00064516">Inch^2</option>
+<option value="2589988.11034">Mile^2</option>
+<option value="1000000">Kilometre^2</option>  
+<option value=" 0.83612736">Yard^2</option>
+
+</select>
+    </b></font></td>
+    </tr>
+    <tr><td height="20"></td></tr>
+    <tr><td colspan="10">
+<input type="button" value=" Calculate " onclick="calcforce(this.form)" style="margin-left:1.5cm">
+    <input type="reset" value="Clear" style="margin-left:.5cm">
+</td></tr>
+    </tbody></table>
+<br>
+</div>
+<font size="2" face="verdana" color="#FF0000" style="
+    margin: -200;
+"><b style="margin-left:5.5cm">Result:</b></font>
+    <br>
+<table>
+<tbody><tr>
+<td><font size="2" face="verdana" color="darkblue"><b>Force</b></font></td>
+<td><font size="2" face="verdana" color="darkblue"><b><input type="text" size="12" maxlength="15" value="" name="result"> </b></font></td>
+
+</tr>
+</tbody>
+</table>
+</form>
+</div>
+</tr>
+</tbody>
+</table>
+</form>
+</div>
+
+<div class="GraphContainer">
+  <div class="GC" style = "text-align:center;">
+    <h2>Graph Plot Area</h2>
+    <h5>Stress</h5>
+    <br>
+    <input type="button" class="button" id="Graph" value="Plot" onclick="plot()">
+    <br>
+  <canvas id="myGraph" width="100%" height="100%"></canvas><br>
+    
+  </div>
+</div>
+</tr>
+</tbody>
+
+</table>
+</form>
+</div><br>
+<br>
+</p>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</body>
+</div>
+</div>
+</section>
+<section id="Excel" style="background-color:white">
+<center><iframe width="50%" height="100%" seamless frameborder="0" scrolling="no"src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQNoUmYZHbyR10oJnWFtu4oxrAVwj1cvHIWwZANgd1kCdQ65-1DEZmd0XLSCll7u_JjAAVhOCSaO0rP/pubhtml?widget=true&amp;headers=false">
+  
+</iframe></center>
+</section>
+<FOOTER>
+  <center>
+    <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vRToW4of0JmEpZZ6rkLa2BOjkz5lA4fhVf_m_UVb3XFseuVczFaQNbnDreRi3_BQAEGwihfA-ymC1QX/pub?output=xlsx"> 
+    Download Exccel Sheet</a>
+    </center> 
+    <CENTER><p style="
+    FONT-SIZE: -webkit-xxx-large;
+    BACKGROUND-COLOR: aquamarine;
+">RIGVIT</p></CENTER>
+    </FOOTER>
+
+</body>
+</head>
+</html>
+

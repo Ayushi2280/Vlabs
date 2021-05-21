@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Simulator</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+/* Style the body */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+/* Header */
+.header {
+  padding: 40px;
+  text-align: center;
+  background: #1abc9c;
+  color: white;
+}
+
+/* Increase the font size of the heading */
+.header h1 {
+  font-size: 40px;
+}
+
+/* Style the top navigation bar */
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+}
+
+/* Style the navigation bar links */
+.navbar a {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+}
+
+/* Right-aligned link */
+.navbar a.right {
+  float: right;
+}
+
+/* Change color on hover */
+.navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Column container */
+.row {  
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+/* button */
+.button {
+  background-color: grey;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 2px 2px;
+  cursor: pointer;
+}
+
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+/* Main column */
+.main {
+  flex: 25%; /* Set the width of the main content */
+  background-color: white; /* White background color */
+  padding: 20px; /* Some padding */
+  height: 100vh;
+  text-align: justify;
+  font-style: italics;
+  font-size: 18px;
+}
+
+.sim{
+  font-size: 30px;
+  flex: 35%;
+  text-align: center;
+  margin: auto;
+  width: 70%;
+  height: 120vh;
+  border-right: 2px solid black;
+  border-left: 2px solid black;
+  padding: 10px;
+}
+
+.side{
+ flex: 40%;
+ text-align: center;
+ margin: auto;
+ width: 70%;
+ height: 100vh;
+ padding: 10px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Experiment </h1>
+  <h2>BJT</h2>
+</div>
+
+<div class="navbar">
+  <a href="experiment.html">Experiment</a>
+</div>
+
+<div class="row">
+  <div class="main">
+  <div>
+    <h2>Instructions</h2>
+    <ol type="1">
+                    <li>V<sub>B</sub> would be 0.7v  for Si and 0.4v for Ge.</li>
+                    <li>Typically, &#946; is 80 A. So, its generally 80-100v, V<sub>E</sub> is the voltage across emitter</li>
+                    <li>We apply Kirchoff's Law to calculate various resistances in BJT</li><br>
+                </ol> </div>
+<p>&emsp;<i>"The total current entering a junction or a node is equal to the charge leaving the node as no charge is lost."</i></p><br>
+<p>&emsp;<i>"The voltage around a loop equals to the sum of every voltage drop in the same loop for any closed network and also equals to zero."</i></p><br>
+
+</div>
+<br>
+<br>
+<div class="sim">
+<div>
+<br>
+<br>
+      <p>Select the Material :</p>
+       <form>
+         <select id="Material" onchange="changeImg()">
+            <option>Select material</option>
+            <option>Silicon</option>
+            <option>Germanium</option>
+         </select>
+<p>Enter the Collector Current, I<sub>C</sub> (in milliAmpere):</p>
+        <input id="ic" oninput="one()">
+        <p>Enter the Collector Voltage, V<sub>C</sub> (in Volts):</p>
+        <input id="vc" oninput="two()">
+<p>Enter the Voltage of power supply, V<sub>CC</sub> (in Volts):</p>
+        <input id="vcc" oninput="three()"> 
+<p>Enter the current gain of BJT, &#946; (in Ampere):</p>
+        <input id="beta"> 
+        <p>Enter the Emitter Voltage, V<sub>E</sub> (in Volts):</p>
+        <input id="ve" oninput="four()">
+    <br>
+    <input type="button" class="button" id="P2" value="Reset" onclick="reset()">
+    <input type="button" class="button" id="P1" value="Result" onclick="bjt()">
+    </form>
+  </div>
+  </div>
+
+  <div class="side">
+<h2>The Collector Resistence, R<sub>C</sub> (in Ohm) is <h2 id="rc"></h2>&#937;</h2>
+<h2>The Base Resistence, R<sub>B</sub> (in Ohm) is <h2 id="rb"></h2>&#937;</h2>
+<h2>The Emitter Resistence, R<sub>E</sub> (in Ohm) is <h2 id="re"></h2>&#937;</h2>
+<br>
+<br>
+<br>
+<br>
+<div style="position:relative; top:10px;left:95px; height:300px; width:400px">
+<img src="bjt.jpeg" id="img" height="500px" width="400px">
+                <input  id="cc"    placeholder="Ampere"  style="background-color:#e6f5ff;position:absolute; top:125px;  right:100px; width:80px" readonly/>	
+                <input id="cv"   placeholder="Volt" style="background-color:#e6f5ff;position:absolute; top:235px;  right:-55px; width:90px" readonly/>
+                <input  id="pow"   placeholder="Volt"  style="background-color:#e6f5ff;position:absolute; top:45px;  right:150px; width:80px" readonly/>
+                <input id="ev"   placeholder="Volt" style="background-color:#e6f5ff;position:absolute; top:360px;  right:-55px; width:90px" readonly/>
+</div>
+  </div>
+</div>
+
+<script>
+    
+    function reset() {
+        document.getElementById("Material").disabled=true;
+        document.getElementById("ic").disabled=true;
+        document.getElementById("vc").disabled=true;
+        document.getElementById("vcc").disabled=true;
+        document.getElementById("beta").disabled=true;
+        document.getElementById("ve").disabled=true;
+    }
+
+
+function bjt(){
+var m = document.getElementById('Material'), vbe, vemit = document.getElementById('ve').value, icol = document.getElementById('ic').value, remit, vbas, ibas, b = document.getElementById('beta').value, pow = document.getElementById('vcc').value, rbas, rcol, vcol = document.getElementById('vc').value;
+if (m.value == 'Silicon'){
+       vbe = 0.7;
+}
+else if (m.value == 'Germanium'){
+        vbe = 0.4;
+}
+        remit = vemit/icol;
+        document.getElementById('re').innerHTML = remit.toFixed(2);
+     vbas = vbe + vemit;
+     ibas = icol/b;
+     rbas = (pow - vbas)/ibas;
+     document.getElementById('rb').innerHTML = rbas.toFixed(2);
+rcol = (pow - vcol)/icol;
+document.getElementById('rc').innerHTML = rcol.toFixed(2);
+
+}
+
+function one() {
+document.getElementById('cc').placeholder = document.getElementById('ic').value;
+}
+
+function two() {
+document.getElementById('cv').placeholder = document.getElementById('vc').value;
+}
+
+function three() {
+document.getElementById('pow').placeholder = document.getElementById('vcc').value;
+}
+
+function four() {
+document.getElementById('ve').placeholder = document.getElementById('ev').value;
+}
+
+</script>
+</body>
+</html>

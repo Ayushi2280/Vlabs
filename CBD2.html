@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>RigVIT</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src = "Chart.bundle.js"></script>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+.header {
+  padding: 80px;
+  text-align: center;
+  background: #255379;
+  color: white;
+}
+
+.header h1 {
+  font-size: 40px;
+}
+
+.navbar {
+  overflow: hidden;
+  background-color: #337ab7;
+}
+
+.navbar a {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+}
+
+.navbar a.right {
+  float: right;
+}
+
+.navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.row {  
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.GraphContainer {  
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.GC {
+  -ms-flex: 100%;
+  flex: 100%;
+  background-color: #ffffff;
+  padding: 20px;
+}
+
+.column1 {
+  -ms-flex: 35%;
+  flex: 35%;
+  background-color: #f1f1f1;
+  padding: 20px;
+}
+
+.column2 {   
+  -ms-flex: 30%;
+  flex: 30%;
+  background-color: white;
+  padding: 20px;
+}
+
+.column3 {   
+  -ms-flex: 35%;
+  flex: 35%;
+  background-color: #f1f1f1;
+  padding: 20px;
+}
+
+.button {
+  background-color: #23527c;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 2px 2px;
+  cursor: pointer;
+}
+
+.polaroid {
+  width: 80%;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 25px;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.footer {
+  padding: 20px;
+  text-align: center;
+  background: #337ab7;
+  color: white;
+}
+
+@media screen and (max-width: 700px) {
+  .row {   
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .navbar a {
+    float: none;
+    width: 100%;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>RigVIT</h1>
+  <h5>Material Testing Lab</h5>
+</div>
+
+<div class="navbar">
+  <a href="RIGVIT Homepage.html">Home</a>
+  <a href="RIGVIT 2.html">Labs & Experiments</a>
+  <a href="CBD3.html" class="right">Summary</a>
+</div>
+
+<div class="row">
+  <div class="column1">
+    <h2>About Parameters</h2>
+    <ul>
+      <li>6 Materials to select from</li>
+      <li>Choose the shape and size of cross section</li>
+      <li style="color:red">Click the Set Button to fix the values or Reset to select again</li>
+      <li>Try various loads to get plenty of data in each case</li>
+    </ul>
+    <h5>By selecting material we are changing the values of 'E' (N/mm<sup>2</sup>)</h5>
+    <h5>Cross section parameters alters 'I' value</h5>
+    <h5>All the length parameters are in mm</h5>
+    <h5>All the loads ('F' or 'P') are in newton 'N'</h5>
+  </div>
+  <div class="column2" style = "text-align:center;">
+    <h2>Fixed Parameters</h2>
+    <h5 style="color:red">**You must click "Set" button**</h5>
+    <h5>Select the Material :</h5>
+    <form>
+        <select id="MatSel">
+            <option>Select material</option>
+            <option>Aluminium</option>
+            <option>Copper</option>
+            <option>Titanium</option>
+            <option>Zinc</option>
+            <option>Tin</option>
+            <option>Steel</option>
+        </select>
+    </form>
+        <br>
+        <h5>Beam dimensions :</h5>
+        <br>
+    <form>
+        <select id="cross_section" onchange="changeit()">
+            <option>Select cross-section</option>
+            <option>Rectangle</option>
+            <option>Circle</option>
+        </select>
+        <br>
+        <select id="length" style="display: none;">
+            <option>Select length</option>
+            <option>200</option>
+            <option>400</option>
+        </select>
+        <br>
+        <select id="height" style="display: none;">
+            <option>Select height</option>
+            <option>10</option>
+            <option>20</option>
+        </select>
+        <br>
+        <select id="width" style="display: none;">
+            <option>Select width</option>
+            <option>10</option>
+            <option>20</option>
+        </select>
+        <br>
+        <select id="diameter" style="display: none; position: center;">
+            <option>Select diameter</option>
+            <option>20</option>
+            <option>40</option>
+        </select>
+    </form>
+    <br>
+    <input type="button" class="button" id="P1" value="Set" onclick="disable()">
+    <input type="button" class="button" id="P2" value="Reset" onclick="enable()">
+    <br>
+    <br>
+    <br>
+    <h2>Variable Parameter</h2>
+    <br>
+    <h5>Point Load Acting on the Beam :</h5>
+    <form>
+        <select id="load">
+            <option>Select load</option>
+            <option>50</option>
+            <option>100</option>
+            <option>150</option>
+            <option>200</option>
+            <option>250</option>
+            <option>300</option>
+            <option>350</option>
+            <option>400</option>
+        </select>
+        <br>
+        <br>
+        <input type="button" class="button" id="Process" value="Proceed" onclick="simulate()">
+    </form>
+    <br>
+  </div>
+  <div class="column3" style = "text-align:center;">
+    <h2>Result</h2>
+    <h5>2D Graphical Output</h5>
+    <br>
+    <canvas id="myCanvas" width="400" height="200" style="border:1px solid #000000;">
+      <p>Your browser doesn't support canvas - Please use compatible browser</p>
+    </canvas>
+    <br>
+    <br>
+    <h5>Deflection "δ<sub>B</sub>" of free end <br>from original position <br>(coloured line) (in mm) = </h5><h2 id="result"></h2>
+    <br>
+    <br>
+    <p style="color:red">Keep Writing the Readings in a table format <br>in your notebook for further analysis <br>according to your curriculum</p>
+  </div>
+</div>
+
+<div class="GraphContainer">
+  <div class="GC" style = "text-align:center;">
+    <h2>Graph Plot Area</h2>
+    <h5>Load v/s Deflection</h5>
+    <br>
+    <input type="button" class="button" id="Graph" value="Plot" onclick="plot()">
+    <br>
+    <canvas id="myGraph" width="800" height="400">
+      <p>Canvas not supported</p>
+    </canvas>
+  </div>
+</div>
+
+<div class="footer">
+  <h2>RigVIT</h2>
+</div>
+
+</body>
+<script>
+    var g1 = [0];
+    /*var g2 = [0];
+    var g3 = [0];
+    var g4 = [0];
+    var g5 = [0];
+    var g6 = [0];*/
+    var z1 = [0];
+    /*var z2 = [0];
+    var z3 = [0];
+    var z4 = [0];
+    var z5 = [0];
+    var z6 = [0];*/
+    var c = document.getElementById("myCanvas");
+    var ct = c.getContext("2d");
+    var ct1 = c.getContext("2d");
+    var ct2 = c.getContext("2d");
+    var ct3 = c.getContext("2d");
+    var ctx = c.getContext("2d");
+    var context = c.getContext("2d");
+    ct.fillRect(0, 10, 40, 180);
+    ct1.beginPath();
+    ct1.moveTo(40, 60);
+    ct1.lineTo(400, 60);
+    ct1.stroke();
+    var p1, p2, p3, p4, p5;
+    p1 = document.getElementById('MatSel');
+    p2 = document.getElementById('length');
+    p3 = document.getElementById('height');
+    p4 = document.getElementById('diameter');
+    function changeit(){
+        var get_drop_value = document.getElementById('cross_section');
+        if (get_drop_value.value == 'Rectangle'){
+            document.getElementById('length').style.display = 'inline-block';
+            document.getElementById('width').style.display = 'inline-block';
+            document.getElementById('height').style.display = 'inline-block';
+            document.getElementById('diameter').style.display = 'none';
+            document.getElementById('diameter').selectedIndex = 0;
+        }
+        else if (get_drop_value.value == 'Circle') {
+            document.getElementById('length').style.display = 'inline-block';
+            document.getElementById('diameter').style.display = 'inline-block';
+            document.getElementById('width').style.display = 'none';
+            document.getElementById('width').selectedIndex = 0;
+            document.getElementById('height').style.display = 'none';
+            document.getElementById('height').selectedIndex = 0;
+        }
+        else{
+            document.getElementById('length').style.display = 'none';
+            document.getElementById('width').style.display = 'none';
+            document.getElementById('height').style.display = 'none';
+            document.getElementById('diameter').style.display = 'none';
+        }
+    }
+    function disable() {
+        document.getElementById("MatSel").disabled=true;
+        document.getElementById("cross_section").disabled=true;
+        document.getElementById("length").disabled=true;
+        document.getElementById("height").disabled=true;
+        document.getElementById("width").disabled=true;
+        document.getElementById("diameter").disabled=true;
+        if (p1.value == 'Aluminium') {
+          ctx.beginPath();
+          ctx.moveTo(40, 60);
+          if (p2.value == '200') {
+            if (p3.value == '10'){
+              ctx.lineWidth = '7.5';
+              ctx.lineTo(150, 60);
+              ctx.strokeStyle = "#cccccc";
+              ctx.stroke();
+            }
+            else if (p3.value == '20'){
+              ctx.lineWidth = '15';
+              ctx.lineTo(150, 60);
+              ctx.strokeStyle = "#cccccc";
+              ctx.stroke();
+            }
+            else if (p4.value == '20'){
+              ctx.lineWidth = '15';
+              ctx.lineTo(150, 60);
+              ctx.strokeStyle = "#cccccc";
+              ctx.stroke();
+            }
+            else if (p4.value == '40'){
+              ctx.lineWidth = '22.5';
+              ctx.lineTo(150, 60);
+              ctx.strokeStyle = "#cccccc";
+              ctx.stroke();
+            }
+            else {
+            }
+            ct2.beginPath();
+            ct2.moveTo(150, 40);
+            ct2.lineTo(145, 30);
+            ct2.lineTo(155, 30);
+            ct2.lineTo(150, 40);
+            ct2.stroke();
+          }
+
+            else if (p2.value == '400') {
+              if (p3.value == '10'){
+                ctx.lineWidth = '7.5';
+                ctx.lineTo(300, 60);
+                ctx.strokeStyle = "#cccccc";
+                ctx.stroke();
+              }
+              else if (p3.value == '20'){
+                ctx.lineWidth = '15';
+                ctx.lineTo(300, 60);
+                ctx.strokeStyle = "#cccccc";
+                ctx.stroke();
+              }
+              else if (p4.value == '20'){
+                ctx.lineWidth = '15';
+                ctx.lineTo(300, 60);
+                ctx.strokeStyle = "#cccccc";
+                ctx.stroke();
+              }
+              else if (p4.value == '40'){
+                ctx.lineWidth = '22.5';
+                ctx.lineTo(300, 60);
+                ctx.strokeStyle = "#cccccc";
+                ctx.stroke();
+              }
+
+              else {
+              } 
+              ct2.beginPath();
+              ct2.moveTo(300, 40);
+              ct2.lineTo(295, 30);
+              ct2.lineTo(305, 30);
+              ct2.lineTo(300, 40);
+              ct2.stroke(); 
+            } 
+          }
+
+          else if (p1.value == 'Copper') {
+            ctx.beginPath();
+            ctx.moveTo(40, 60);
+            if (p2.value == '200') {
+              if (p3.value == '10'){
+                ctx.lineWidth = '7.5';
+                ctx.lineTo(150, 60);
+                ctx.strokeStyle = "#993300";
+                ctx.stroke();
+              }
+              else if (p3.value == '20'){
+                ctx.lineWidth = '15';
+                ctx.lineTo(150, 60);
+                ctx.strokeStyle = "#993300";
+                ctx.stroke();
+              }
+              else if (p4.value == '20'){
+                ctx.lineWidth = '15';
+                ctx.lineTo(150, 60);
+                ctx.strokeStyle = "#993300";
+                ctx.stroke();
+              }
+              else if (p4.value == '40'){
+                ctx.lineWidth = '22.5';
+                ctx.lineTo(150, 60);
+                ctx.strokeStyle = "#993300";
+                ctx.stroke();
+              }
+              else {
+              }
+              ct2.beginPath();
+              ct2.moveTo(150, 40);
+              ct2.lineTo(145, 30);
+              ct2.lineTo(155, 30);
+              ct2.lineTo(150, 40);
+              ct2.stroke();
+            }
+            else if (p2.value == '400') {
+              if (p3.value == '10'){
+                ctx.lineWidth = '7.5';
+                ctx.lineTo(300, 60);
+                ctx.strokeStyle = "#993300";
+                ctx.stroke();
+              }
+              else if (p3.value == '20'){
+                ctx.lineWidth = '15';
+                ctx.lineTo(300, 60);
+                ctx.strokeStyle = "#993300";
+                ctx.stroke();
+              }
+              else if (p4.value == '20'){
+                ctx.lineWidth = '15';
+                ctx.lineTo(300, 60);
+                ctx.strokeStyle = "#993300";
+                ctx.stroke();
+              }
+              else if (p4.value == '40'){
+                ctx.lineWidth = '22.5';
+                ctx.lineTo(300, 60);
+                ctx.strokeStyle = "#993300";
+                ctx.stroke();
+              }
+              else{
+
+              }
+              ct2.beginPath();
+              ct2.moveTo(300, 40);
+              ct2.lineTo(295, 30);
+              ct2.lineTo(305, 30);
+              ct2.lineTo(300, 40);
+              ct2.stroke();
+            }
+            else {
+            }  
+          }
+
+          else if (p1.value == 'Titanium') {
+            ctx.beginPath();
+            ctx.moveTo(40, 60);
+            if (p2.value == '200') {
+              if (p3.value == '10'){
+                ctx.lineWidth = '7.5';
+                ctx.lineTo(150, 60);
+                ctx.strokeStyle = "#0066ff";
+                ctx.stroke();
+              }
+              else if (p3.value == '20'){
+                ctx.lineWidth = '15';
+                ctx.lineTo(150, 60);
+                ctx.strokeStyle = "#0066ff";
+                ctx.stroke();
+              }
+              else if (p4.value == '20'){
+                ctx.lineWidth = '15';
+                ctx.lineTo(150, 60);
+                ctx.strokeStyle = "#0066ff";
+                ctx.stroke();
+              }
+              else if (p4.value == '40'){
+                ctx.lineWidth = '22.5';
+                ctx.lineTo(150, 60);
+                ctx.strokeStyle = "#0066ff";
+                ctx.stroke();
+              }
+              else {
+              }
+              ct2.beginPath();
+              ct2.moveTo(150, 40);
+              ct2.lineTo(145, 30);
+              ct2.lineTo(155, 30);
+              ct2.lineTo(150, 40);
+              ct2.stroke();
+            }
+            else if (p2.value == '400') {
+              if (p3.value == '10'){
+                ctx.lineWidth = '7.5';
+                ctx.lineTo(300, 60);
+                ctx.strokeStyle = "#0066ff";
+                ctx.stroke();
+              }
+              else if (p3.value == '20'){
+                ctx.lineWidth = '15';
+                ctx.lineTo(300, 60);
+                ctx.strokeStyle = "#0066ff";
+                ctx.stroke();
+              }
+              else if (p4.value == '20'){
+                ctx.lineWidth = '15';
+                ctx.lineTo(300, 60);
+                ctx.strokeStyle = "#0066ff";
+                ctx.stroke();
+              }
+              else if (p4.value == '40'){
+                ctx.lineWidth = '22.5';
+                ctx.lineTo(300, 60);
+                ctx.strokeStyle = "#0066ff";
+                ctx.stroke();
+              }
+              else{
+              }
+              ct2.beginPath();
+              ct2.moveTo(300, 40);
+              ct2.lineTo(295, 30);
+              ct2.lineTo(305, 30);
+              ct2.lineTo(300, 40);
+              ct2.stroke();
+            }
+            else {
+            }  
+          }
+
+          else if (p1.value == 'Zinc') {
+            ctx.beginPath();
+            ctx.moveTo(40, 60);
+            if (p2.value == '200') {
+              if (p3.value == '10'){
+                ctx.lineWidth = '7.5';
+                ctx.lineTo(150, 60);
+                ctx.strokeStyle = "#ff0066";
+                ctx.stroke();
+              }
+              else if (p3.value == '20'){
+                ctx.lineWidth = '15';
+                ctx.lineTo(150, 60);
+                ctx.strokeStyle = "#ff0066";
+                ctx.stroke();
+              }
+              else if (p4.value == '20'){
+                ctx.lineWidth = '15';
+                ctx.lineTo(150, 60);
+                ctx.strokeStyle = "#ff0066";
+                ctx.stroke();
+              }
+              else if (p4.value == '40'){
+                ctx.lineWidth = '22.5';
+                ctx.lineTo(150, 60);
+                ctx.strokeStyle = "#ff0066";
+                ctx.stroke();
+              }
+              else {
+              }
+              ct2.beginPath();
+              ct2.moveTo(150, 40);
+              ct2.lineTo(145, 30);
+              ct2.lineTo(155, 30);
+              ct2.lineTo(150, 40);
+              ct2.stroke();
+            }
+            else if (p2.value == '400') {
+              if (p3.value == '10'){
+                ctx.lineWidth = '7.5';
+                ctx.lineTo(300, 60);
+                ctx.strokeStyle = "#ff0066";
+                ctx.stroke();
+              }
+              else if (p3.value == '20'){
+                ctx.lineWidth = '15';
+                ctx.lineTo(300, 60);
+                ctx.strokeStyle = "#ff0066";
+                ctx.stroke();
+              }
+              else if (p4.value == '20'){
+                ctx.lineWidth = '15';
+                ctx.lineTo(300, 60);
+                ctx.strokeStyle = "#ff0066";
+                ctx.stroke();
+              }
+              else if (p4.value == '40'){
+                ctx.lineWidth = '22.5';
+                ctx.lineTo(300, 60);
+                ctx.strokeStyle = "#ff0066";
+                ctx.stroke();
+              }
+              else{
+              }
+              ct2.beginPath();
+              ct2.moveTo(300, 40);
+              ct2.lineTo(295, 30);
+              ct2.lineTo(305, 30);
+              ct2.lineTo(300, 40);
+              ct2.stroke();
+            }
+            else {
+            }  
+          }
+
+          else if (p1.value == 'Tin') {
+            ctx.beginPath();
+            ctx.moveTo(40, 60);
+            if (p2.value == '200') {
+              if (p3.value == '10'){
+                ctx.lineWidth = '7.5';
+                ctx.lineTo(150, 60);
+                ctx.strokeStyle = "#00cc00";
+                ctx.stroke();
+              }
+              else if (p3.value == '20'){
+                ctx.lineWidth = '15';
+                ctx.lineTo(150, 60);
+                ctx.strokeStyle = "#00cc00";
+                ctx.stroke();
+              }
+              else if (p4.value == '20'){
+                ctx.lineWidth = '15';
+                ctx.lineTo(150, 60);
+                ctx.strokeStyle = "#00cc00";
+                ctx.stroke();
+              }
+              else if (p4.value == '40'){
+                ctx.lineWidth = '22.5';
+                ctx.lineTo(150, 60);
+                ctx.strokeStyle = "#00cc00";
+                ctx.stroke();
+              }
+              else {
+              }
+              ct2.beginPath();
+              ct2.moveTo(150, 40);
+              ct2.lineTo(145, 30);
+              ct2.lineTo(155, 30);
+              ct2.lineTo(150, 40);
+              ct2.stroke();
+            }
+            else if (p2.value == '400') {
+              if (p3.value == '10'){
+                ctx.lineWidth = '7.5';
+                ctx.lineTo(300, 60);
+                ctx.strokeStyle = "#00cc00";
+                ctx.stroke();
+              }
+              else if (p3.value == '20'){
+                ctx.lineWidth = '15';
+                ctx.lineTo(300, 60);
+                ctx.strokeStyle = "#00cc00";
+                ctx.stroke();
+              }
+              else if (p4.value == '20'){
+                ctx.lineWidth = '15';
+                ctx.lineTo(300, 60);
+                ctx.strokeStyle = "#00cc00";
+                ctx.stroke();
+              }
+              else if (p4.value == '40'){
+                ctx.lineWidth = '22.5';
+                ctx.lineTo(300, 60);
+                ctx.strokeStyle = "#00cc00";
+                ctx.stroke();
+              }
+              else{
+              }
+              ct2.beginPath();
+              ct2.moveTo(300, 40);
+              ct2.lineTo(295, 30);
+              ct2.lineTo(305, 30);
+              ct2.lineTo(300, 40);
+              ct2.stroke();
+            }
+            else {
+            }  
+          }
+
+          else if (p1.value == 'Steel') {
+            ctx.beginPath();
+            ctx.moveTo(40, 60);
+            if (p2.value == '200') {
+              if (p3.value == '10'){
+                ctx.lineWidth = '7.5';
+                ctx.lineTo(150, 60);
+                ctx.strokeStyle = "#cc9900";
+                ctx.stroke();
+              }
+              else if (p3.value == '20'){
+                ctx.lineWidth = '15';
+                ctx.lineTo(150, 60);
+                ctx.strokeStyle = "#cc9900";
+                ctx.stroke();
+              }
+              else if (p4.value == '20'){
+                ctx.lineWidth = '15';
+                ctx.lineTo(150, 60);
+                ctx.strokeStyle = "#cc9900";
+                ctx.stroke();
+              }
+              else if (p4.value == '40'){
+                ctx.lineWidth = '22.5';
+                ctx.lineTo(150, 60);
+                ctx.strokeStyle = "#cc9900";
+                ctx.stroke();
+              }
+              else {
+              }
+              ct2.beginPath();
+              ct2.moveTo(150, 40);
+              ct2.lineTo(145, 30);
+              ct2.lineTo(155, 30);
+              ct2.lineTo(150, 40);
+              ct2.stroke();
+            }
+            else if (p2.value == '400') {
+              if (p3.value == '10'){
+                ctx.lineWidth = '7.5';
+                ctx.lineTo(300, 60);
+                ctx.strokeStyle = "#cc9900";
+                ctx.stroke();
+              }
+              else if (p3.value == '20'){
+                ctx.lineWidth = '15';
+                ctx.lineTo(300, 60);
+                ctx.strokeStyle = "#cc9900";
+                ctx.stroke();
+              }
+              else if (p4.value == '20'){
+                ctx.lineWidth = '15';
+                ctx.lineTo(300, 60);
+                ctx.strokeStyle = "#cc9900";
+                ctx.stroke();
+              }
+              else if (p4.value == '40'){
+                ctx.lineWidth = '22.5';
+                ctx.lineTo(300, 60);
+                ctx.strokeStyle = "#cc9900";
+                ctx.stroke();
+              }
+              else{
+              }
+              ct2.beginPath();
+              ct2.moveTo(300, 40);
+              ct2.lineTo(295, 30);
+              ct2.lineTo(305, 30);
+              ct2.lineTo(300, 40);
+              ct2.stroke();
+            }
+            else {
+            }  
+          }
+
+          else {
+          }
+    }
+    function enable() {
+        document.getElementById("MatSel").disabled=false;
+        document.getElementById("cross_section").disabled=false;
+        document.getElementById("length").disabled=false;
+        document.getElementById("height").disabled=false;
+        document.getElementById("width").disabled=false;
+        document.getElementById("diameter").disabled=false;
+        g1 = [0];
+        z1 = [0];
+        context.clearRect(0, 0, c.width, c.height);
+        ct.fillRect(0, 10, 40, 180);
+        ct1.beginPath();
+        ct1.moveTo(0, 60);
+        ct1.lineWidth = 1;
+        ct1.lineTo(400, 60);
+        ct1.strokeStyle = "#1a1a1a";
+        ct1.stroke();
+    }
+    function simulate(){
+        var l, X, R, F, L, E, I, B, H, D, Prime = document.getElementById('MatSel'), Sec = document.getElementById('cross_section');
+        L = document.getElementById('length');
+        l = L.options[L.selectedIndex].text;
+        H = document.getElementById('height');
+        B = document.getElementById('width');
+        D = document.getElementById('diameter');
+        if (Prime.value == 'Aluminium'){
+            E = 69000;
+        }
+        else if (Prime.value == 'Copper'){
+            E = 117000;
+        }
+        else if (Prime.value == 'Steel'){
+            E = 200000;
+        }
+        else if (Prime.value == 'Titanium'){
+            E = 103000;
+        }
+        else if (Prime.value == 'Zinc'){
+            E = 99300;
+        }
+        else if (Prime.value == 'Tin'){
+            E = 30000;
+        }
+        else{
+            X = 0;
+        }
+        if (Sec.value == 'Rectangle'){
+            var b, h;
+            b = B.options[B.selectedIndex].text;
+            h = H.options[H.selectedIndex].text;
+            I = (b*(h**3))/12.0;
+        }  
+        else if (Sec.value == 'Circle'){
+            var d = D.options[D.selectedIndex].text;
+            I = (3.14*(d**4))/64;
+        }
+        else{
+            X = 0;
+        }
+        F = document.getElementById('load');
+        if (F.value == 'Select load'){
+            X = 0;
+            document.getElementById('result').innerHTML = 'error';
+        }
+        else{
+            var f = F.options[F.selectedIndex].text;
+            R = (f*(l**3))/(3*E*I);
+            var r1 = R.toFixed(2);
+            document.getElementById('result').innerHTML = r1;
+            g1.push(r1);
+            g1.sort(function(a, b){return a - b});
+            z1.push(f);
+            z1.sort(function(a, b){return a - b});
+        /*  if (Prime.value == 'Aluminium'){
+              g1.push(R);
+              g1.sort(function(a, b){return a - b});
+              z1.push(f);
+              z1.sort(function(a, b){return a - b});
+            }
+            else if (Prime.value == 'Copper'){
+              g2.push(R);
+              g2.sort(function(a, b){return a - b});
+              z2.push(f);
+              z2.sort(function(a, b){return a - b});
+            }
+            else if (Prime.value == 'Steel'){
+              g3.push(R);
+              g3.sort(function(a, b){return a - b});
+              z3.push(f);
+              z3.sort(function(a, b){return a - b});
+            }
+            else if (Prime.value == 'Titanium'){
+              g4.push(R);
+              g4.sort(function(a, b){return a - b});
+              z4.push(f);
+              z4.sort(function(a, b){return a - b});
+            }
+            else if (Prime.value == 'Zinc'){
+              g5.push(R);
+              g5.sort(function(a, b){return a - b});
+              z5.push(f);
+              z5.sort(function(a, b){return a - b});
+            }
+            else if (Prime.value == 'Tin'){
+              g6.push(R);
+              g6.sort(function(a, b){return a - b});
+              z6.push(f);
+              z6.sort(function(a, b){return a - b});
+            }
+            else{
+            }*/
+        }
+        var r = 60.0+R;
+        context.clearRect(0, 0, c.width, c.height);
+        if (l == '200') {
+          ctx.beginPath();
+          ctx.moveTo(40, 60);
+          if (p3.value == '10'){
+            ctx.lineWidth = '7.5';
+            ctx.quadraticCurveTo(100, 60, 150, r);
+            ctx.stroke();
+            ct2.moveTo(150, r);
+            ct2.lineTo(145, r-10);
+            ct2.lineTo(155, r-10);
+            ct2.lineTo(150, r);
+            ct2.stroke();
+          }
+          else if (p3.value == '20'){
+            ctx.lineWidth = '15';
+            ctx.quadraticCurveTo(100, 60, 150, r);
+            ctx.stroke();
+            ct2.moveTo(150, r);
+            ct2.lineTo(145, r-10);
+            ct2.lineTo(155, r-10);
+            ct2.lineTo(150, r);
+            ct2.stroke();
+          }
+          else if (p4.value == '20'){
+            ctx.lineWidth = '15';
+            ctx.quadraticCurveTo(100, 60, 150, r);
+            ctx.stroke();
+            ct2.moveTo(150, r);
+            ct2.lineTo(145, r-10);
+            ct2.lineTo(155, r-10);
+            ct2.lineTo(150, r);
+            ct2.stroke();
+          }
+          else if (p4.value == '40'){
+            ctx.lineWidth = '22.5';
+            ctx.quadraticCurveTo(100, 60, 150, r);
+            ctx.stroke();
+            ct2.moveTo(150, r);
+            ct2.lineTo(145, r-10);
+            ct2.lineTo(155, r-10);
+            ct2.lineTo(150, r);
+            ct2.stroke();
+          }
+          else {
+          }
+        } 
+        else {
+          ctx.beginPath();
+          ctx.moveTo(40, 60);
+          if (p3.value == '10'){
+            ctx.lineWidth = '7.5';
+            ctx.quadraticCurveTo(200, 60, 300, r);
+            ctx.stroke();
+            ct2.moveTo(300, r);
+            ct2.lineTo(295, r-10);
+            ct2.lineTo(305, r-10);
+            ct2.lineTo(300, r);
+            ct2.stroke();
+          }
+          else if (p3.value == '20'){
+            ctx.lineWidth = '15';
+            ctx.quadraticCurveTo(200, 60, 300, r);
+            ctx.stroke();
+            ct2.moveTo(300, r);
+            ct2.lineTo(295, r-10);
+            ct2.lineTo(305, r-10);
+            ct2.lineTo(300, r);
+            ct2.stroke();
+          }
+          else if (p4.value == '20'){
+            ctx.lineWidth = '15';
+            ctx.quadraticCurveTo(200, 60, 300, r);
+            ctx.stroke();
+            ct2.moveTo(300, r);
+            ct2.lineTo(295, r-10);
+            ct2.lineTo(305, r-10);
+            ct2.lineTo(300, r);
+            ct2.stroke();
+          }
+          else if (p4.value == '40'){
+            ctx.lineWidth = '22.5';
+            ctx.quadraticCurveTo(200, 60, 300, r);
+            ctx.stroke();
+            ct2.moveTo(300, r);
+            ct2.lineTo(295, r-10);
+            ct2.lineTo(305, r-10);
+            ct2.lineTo(300, r);
+            ct2.stroke();
+          }
+          else {
+          }
+        }
+        ct.fillRect(0, 10, 40, 180);
+        ct1.moveTo(40, 60);
+        ct1.lineWidth = 1;
+        ct1.lineTo(400, 60);
+        ct1.stroke();
+    }
+    function plot(){
+      var ctg = document.getElementById('myGraph').getContext('2d');
+      ctg.beginPath();
+      var myGraph = new Chart(ctg, {
+        type: 'line',
+        data: {
+          labels: z1,
+          datasets: [{
+            label: 'Deflection (in mm)',
+            data: g1,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero: true
+              }
+            }]
+          }
+        }
+      });
+    }
+</script>
+</html>

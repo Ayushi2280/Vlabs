@@ -1,0 +1,294 @@
+<html lang="en"><head>
+  <!-- Required meta tags -->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <script src = "Chart.bundle.js"></script>
+
+  <title>RigVIT</title>
+    </head>
+ <body style="
+    background-color: aquamarine;
+">
+
+<header style="background-color: black;">
+  <div class="navbar navbar-dark bg-dark">
+      <a class="navbar-brand" href="demo.html">RigVIT</a>
+  <a class="nav-link" href="demo.html">Home <span class="sr-only">(current)</span></a>
+ <a class="nav-link" href="a.html" id="Introduction">Introduction</a>
+   <a href="./list.html"> List of experiments</a> 
+  <a class="nav-link" href="./audience.html">For the Audience</a>
+   <a class="nav-link" href="./Feedback.html">Feedback</a>
+</div>
+
+<img src="./images/Mech1.png " class="rounded mx-auto d-block" alt="...">
+
+<section id="Introduction" class="section section-padded" wfd-id="28" style="background-color: white">
+  <div class="container" wfd-id="47" margin="auto"style="background-color: white"; >
+    
+    <div class="card bg-light mb-3" wfd-id="70" style="
+margin: auto; background-color: white; 
+"> 
+
+<div id="Introduction" wfd-id="5" style="
+margin: auto; background-color: white; 
+">
+    
+        <div class="card " style="background-color: white
+"> 
+
+<div id="Introduction" wfd-id="5" style="
+  background-color: white; 
+">
+                
+                <section id="Introduction" style="display: block;" wfd-id="11" style="background-color: white">
+          
+
+  
+        <div class="card bg-light mb-3" style="background-color: white
+ 
+"> 
+            
+   <div class="navbar"  style="background-color: white">
+  <a href="#Theory">Theory</a>
+  <a href="./Procedure.html">Procedure</a>
+  <a href="./Calculator.html" class="right">Calculator</a>
+  <a href="./Questions.html" class="right">Questions</a>
+
+</div>
+</div>
+
+
+
+</style>
+
+<script language="JavaScript" type="text/javascript">
+  var g = [0];
+  var h = [0];
+
+function calcstrain(){
+    var form = document.strain;
+    var i = form.changeunits.selectedIndex;
+    var changeunitsvalue = form.changeunits.options[i].value; 
+    var j = form.originalunits.selectedIndex;
+    var originalunitsvalue = form.originalunits.options[j].value;
+
+
+    var c = form.change.value;
+    
+    var o = form.original.value;
+
+    g.push(c);
+   var Precision=6;
+   var result = (c * changeunitsvalue) / (o * originalunitsvalue);
+   form.result.value =result.toPrecision(Precision);
+    h.push(result)
+    return true;
+}
+  function plot(){
+      var ctx = document.getElementById('myGraph')
+      var myGraph = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: g,
+          datasets: [{
+            label: 'Force',
+            data: h,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero: true
+              }
+            }]
+          }
+        }
+      });
+    }
+
+</script>
+
+<body bgcolor="#CCCCCC" bottommargin="0" topmargin="0"  style="background-color: white" >
+<table   bgcolor="white">
+<tbody><tr><td>
+<table align="left">
+        <tbody>
+        <tr>
+          <td>
+<p class="MsoNormal" style="line-height: 150%;">
+
+      </p><p style="text-indent:50px;font-weight: bold;color: black;">Stress and Strain:<br>
+The relationship between stress and strain in a material is determined by subjecting a material specimen to a tension or compression test. In this test, a steadily increasing axial force is applied to a test specimen, and the deflection is measured as the load is increased. These values can be plotted as a load-deflection curve. The deflection in the test specimen is dependent on both the material's elastic modulus as well as the geometry of the specimen (area and length). Since we are interested material behavior without regard to geometry, it is useful to generalize the data to remove the effect of geometry. This is done by converting the load values to stress values and converting the deflection values to strain values:<br><br>
+<center>
+<p style="
+    color: blue;
+">
+   Stress: σ = F/A 
+</p><br> σ  =  amount of stress on the object , F = force that is acting on the object. = A = cross-sectional area
+  <br><br>
+<p style="
+    color: blue;
+"> 
+Strain(S) = ΔX/X : 
+</p><br>   S = strain (it is unitless) , Δx = change in dimension , X = original dimension
+</p><br>
+</center>
+
+  <form name="strain" style="
+    
+">
+ <a name="strain"></a>
+
+  <center>
+   <p><font size="2" face="verdana" color="darkblue"><strong><b><span >Calculate Strain</span> </b></strong></font></p>
+    </center>
+    <p></p>
+    <br>
+    <font size="2" face="verdana" color="red"><strong><b style="margin-left:5.5cm">Enter your values:</b></strong></font>
+
+    <table style="margin-left:6cm; margin-top:.3cm">
+    
+    <tbody><tr>
+
+      <td><font size="2" face="verdana" color="darkblue"><b>Change in Length:</b></font></td>
+      <td><input type="text" size="7" maxlength="15" name="change"></td>
+      <td><font size="2" face="verdana" color="darkblue"><b>
+    <select name="changeunits">
+<option value="1" selected="">Meter</option>
+<option value="0.01">Centimeter</option>
+<option value="10">Dekameter</option>
+<option value="0.1">Decimeter</option>
+<option value="1e+18">Exameter</option>  
+<option value=" 1e-15">Femtometer</option>   
+<option value="0.3048">Foot</option>
+<option value=" 100">Hectometer</option>   
+<option value="0.0254">Inch</option>   
+<option value="1000">Kilometer</option>  
+<option value="1000000 ">Megameter</option>
+<option value="1e-06">Micrometer</option>
+<option value="1609.344">Mile</option>
+<option value=" 0.001">Millimeter</option>   
+<option value="1e-09 ">Nanometer</option>
+<option value=" 1e+15">Petameter</option>
+<option value="1e-12 ">Picometer</option>
+<option value="0.9144">Yard</option>   
+</select>
+    </b></font></td>
+    </tr>
+    
+    <tr>
+      <td><font size="2" face="verdana" color="darkblue"><b>Original Length:</b></font></td>
+      <td><input type="text" size="7" maxlength="15" name="original"></td>
+
+      <td><font size="2" face="verdana" color="darkblue"><b>
+    <select name="originalunits">
+<option value="1" selected="">Meter</option>
+<option value="0.01">Centimeter</option>
+<option value="10">Dekameter</option>
+<option value="0.1">Decimeter</option>
+<option value="1e+18">Exameter</option>  
+<option value=" 1e-15">Femtometer</option>   
+<option value="0.3048">Foot</option>
+<option value=" 100">Hectometer</option>   
+<option value="0.0254">Inch</option>   
+<option value="1000">Kilometer</option>  
+<option value="1000000 ">Megameter</option>
+<option value="1e-06">Micrometer</option>
+<option value="1609.344">Mile</option>
+<option value=" 0.001">Millimeter</option>   
+<option value="1e-09 ">Nanometer</option>
+<option value=" 1e+15">Petameter</option>
+<option value="1e-12 ">Picometer</option>
+<option value="0.9144">Yard</option>   </select>
+    </b></font></td>
+    </tr>
+    <tr><td height="20"></td></tr>
+    <tr><td colspan="10">
+<input type="button" value=" Calculate " onclick="calcstrain(this.form)" style="margin-left:1.5cm">
+    <input type="reset" value="Clear" style="margin-left:.5cm">
+</td></tr>
+  <font size="2" face="verdana" color="#FF0000"><b style="margin-left:5.5cm">Result:</b></font>
+    <br>
+<table style="margin-left:6cm">
+<tbody><tr>
+  <tbody><tr>
+<td><font size="2" face="verdana" color="darkblue">Stain</font></td>
+<td><font size="2" face="verdana" color="darkblue"><input type="text" size="12" maxlength="15" value="" name="result"></font></td>
+</tr>
+</tbody>
+</table>
+</center>
+</tr>
+</tbody>
+</table>
+</form>
+</div>
+</center>
+</p>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="GraphContainer">
+  <div class="GC" style = "text-align:center;">
+    <h2>Graph Plot Area</h2>
+    <h5>Strain</h5>
+    <br>
+    <input type="button" class="button" id="Graph" value="Plot" onclick="plot()">
+    <br>
+  <canvas id="myGraph"></canvas><br>
+   </div>
+ </div>
+</td>
+</tr>
+</tbody>
+</table>
+</body>
+</div>
+</div>
+</section>
+<section id="Excel" style="background-color:white">
+  <center><iframe width="50%" height="100%" seamless frameborder="0" scrolling="no"src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQNoUmYZHbyR10oJnWFtu4oxrAVwj1cvHIWwZANgd1kCdQ65-1DEZmd0XLSCll7u_JjAAVhOCSaO0rP/pubhtml?widget=true&amp;headers=false">
+    
+  </iframe></center>
+  </section>
+  <FOOTER>
+    <center>
+      <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vRToW4of0JmEpZZ6rkLa2BOjkz5lA4fhVf_m_UVb3XFseuVczFaQNbnDreRi3_BQAEGwihfA-ymC1QX/pub?output=xlsx"> 
+      Download Exccel Sheet</a>
+      </center> 
+      <CENTER><p style="
+      FONT-SIZE: -webkit-xxx-large;
+      BACKGROUND-COLOR: aquamarine;
+  ">RIGVIT</p></CENTER>
+      </FOOTER>
+  
+  </body>
+  </head>
+  </html>
+  
+  
